@@ -254,7 +254,7 @@ export const companies: CompanyProfile[] = [
       "To design secure, scalable and intelligent technologies that improve institutional performance, public services, economic inclusion and daily life.",
     vision:
       "To become Africa’s leading technology and digital infrastructure company, creating systems that power institutions, cities, enterprises and communities.",
-    logo: "/brands/smartcycle-logo.png",
+    logo: "/brands/smartcycle-new.png",
     theme: "smartcycle",
     sectors: [
       "Artificial Intelligence",
