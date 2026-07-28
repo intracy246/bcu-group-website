@@ -236,7 +236,7 @@ export default function Home() {
 
               <div className="company-logo-container company-logo-container--smartcycle">
                 <Image
-                  src="/brands/smartcycle-logo.png"
+                  src="/brands/smartcycle-new.png"
                   alt="SmartCycle Technologies"
                   width={600}
                   height={260}
