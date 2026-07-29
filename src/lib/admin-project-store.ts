@@ -4,10 +4,37 @@ import type {
   AdminProjectFormData,
 } from "@/types/admin-project";
 
-const STORAGE_KEY = "BCU_ADMIN_PROJECTS";
+export const ADMIN_PROJECTS_STORAGE_KEY =
+  "BCU_ADMIN_PROJECTS_V2";
+
+export const ADMIN_PROJECTS_UPDATED_EVENT =
+  "bcu-admin-projects-updated";
 
 function canUseStorage() {
   return typeof window !== "undefined";
+}
+
+function notifyProjectsUpdated() {
+  if (!canUseStorage()) {
+    return;
+  }
+
+  window.dispatchEvent(
+    new CustomEvent(ADMIN_PROJECTS_UPDATED_EVENT)
+  );
+}
+
+function saveProjects(projects: AdminProject[]) {
+  if (!canUseStorage()) {
+    return;
+  }
+
+  window.localStorage.setItem(
+    ADMIN_PROJECTS_STORAGE_KEY,
+    JSON.stringify(projects)
+  );
+
+  notifyProjectsUpdated();
 }
 
 export function getAdminProjects(): AdminProject[] {
@@ -15,25 +42,27 @@ export function getAdminProjects(): AdminProject[] {
     return starterAdminProjects;
   }
 
-  const storedProjects = window.localStorage.getItem(STORAGE_KEY);
+  const storedProjects = window.localStorage.getItem(
+    ADMIN_PROJECTS_STORAGE_KEY
+  );
 
   if (!storedProjects) {
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(starterAdminProjects)
-    );
-
+    saveProjects(starterAdminProjects);
     return starterAdminProjects;
   }
 
   try {
-    return JSON.parse(storedProjects) as AdminProject[];
-  } catch {
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(starterAdminProjects)
-    );
+    const parsedProjects = JSON.parse(
+      storedProjects
+    ) as AdminProject[];
 
+    if (!Array.isArray(parsedProjects)) {
+      throw new Error("Invalid projects data");
+    }
+
+    return parsedProjects;
+  } catch {
+    saveProjects(starterAdminProjects);
     return starterAdminProjects;
   }
 }
@@ -46,25 +75,30 @@ export function getAdminProjectById(
   );
 }
 
+export function getAdminProjectBySlug(
+  slug: string
+): AdminProject | undefined {
+  return getAdminProjects().find(
+    (project) => project.slug === slug
+  );
+}
+
 export function createAdminProject(
   formData: AdminProjectFormData
 ): AdminProject {
   const projects = getAdminProjects();
   const timestamp = new Date().toISOString();
 
-  const project: AdminProject = {
+  const newProject: AdminProject = {
     ...formData,
     id: crypto.randomUUID(),
     createdAt: timestamp,
     updatedAt: timestamp,
   };
 
-  window.localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify([project, ...projects])
-  );
+  saveProjects([newProject, ...projects]);
 
-  return project;
+  return newProject;
 }
 
 export function updateAdminProject(
@@ -72,6 +106,7 @@ export function updateAdminProject(
   formData: AdminProjectFormData
 ): AdminProject | undefined {
   const projects = getAdminProjects();
+
   const existingProject = projects.find(
     (project) => project.id === id
   );
@@ -86,14 +121,11 @@ export function updateAdminProject(
     updatedAt: new Date().toISOString(),
   };
 
-  window.localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(
-      projects.map((project) =>
-        project.id === id ? updatedProject : project
-      )
-    )
+  const updatedProjects = projects.map((project) =>
+    project.id === id ? updatedProject : project
   );
+
+  saveProjects(updatedProjects);
 
   return updatedProject;
 }
@@ -101,10 +133,13 @@ export function updateAdminProject(
 export function deleteAdminProject(id: string) {
   const projects = getAdminProjects();
 
-  window.localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(
-      projects.filter((project) => project.id !== id)
-    )
+  const remainingProjects = projects.filter(
+    (project) => project.id !== id
   );
+
+  saveProjects(remainingProjects);
+}
+
+export function resetAdminProjects() {
+  saveProjects(starterAdminProjects);
 }

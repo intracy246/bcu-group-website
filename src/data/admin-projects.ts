@@ -1,166 +1,280 @@
-import type { AdminProject } from "@/types/admin-project";
+import { companies } from "@/data/companies";
+import type {
+  AdminProject,
+  AdminProjectCompany,
+  AdminProjectStatus,
+} from "@/types/admin-project";
 
-export const starterAdminProjects: AdminProject[] = [
-  {
-    id: "smartcampus360",
-    name: "SmartCampus360",
-    slug: "smartcampus360",
-    company: "SmartCycle Technologies",
-    category: "Education Technology",
-    status: "Published",
-    summary:
-      "An integrated digital operating system for universities and colleges.",
-    description:
-      "SmartCampus360 manages examinations, attendance, QR identification, kiosks, room allocation, academic workflows and institutional reporting.",
-    logo: "/brands/smartcycle-new.png",
-    coverImage: "/news/smartcampus360.jpg",
-    featured: true,
-    displayOrder: 1,
-    createdAt: "2026-07-01T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "smartflow360",
-    name: "SmartFlow360",
-    slug: "smartflow360",
-    company: "SmartCycle Technologies",
-    category: "Service Delivery Technology",
-    status: "Published",
-    summary:
-      "A digital queue management and institutional service-delivery platform.",
-    description:
-      "SmartFlow360 manages queue tickets, waiting times, counters, public displays, institutional performance and customer-service analytics.",
-    logo: "/brands/smartcycle-new.png",
-    coverImage: "/news/smartflow360.jpg",
-    featured: true,
-    displayOrder: 2,
-    createdAt: "2026-07-02T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "smartpass360",
-    name: "SmartPass360",
-    slug: "smartpass360",
-    company: "SmartCycle Technologies",
-    category: "Access Control Technology",
-    status: "Published",
-    summary:
-      "Visitor registration, QR access and institutional entry-management system.",
-    description:
-      "SmartPass360 supports visitor self-registration, approvals, printed QR passes, controlled entry, exit scanning and audit records.",
-    logo: "/brands/smartcycle-new.png",
-    coverImage: "/news/smartpass360.jpg",
-    featured: true,
-    displayOrder: 3,
-    createdAt: "2026-07-03T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "mappo",
-    name: "Mappo",
-    slug: "mappo",
-    company: "SmartCycle Technologies",
-    category: "Location and Commerce Platform",
-    status: "Draft",
-    summary:
-      "A unified discovery, navigation, commerce and mobility platform.",
-    description:
-      "Mappo connects users with businesses, places, transport services, agents, agriculture, events and location-based digital services.",
-    logo: "/brands/smartcycle-new.png",
-    coverImage: "",
-    featured: false,
-    displayOrder: 4,
-    createdAt: "2026-07-04T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "genesis-lifeos",
-    name: "Genesis: LifeOS",
-    slug: "genesis-lifeos",
-    company: "SmartCycle Technologies",
-    category: "Artificial Intelligence",
-    status: "Draft",
-    summary:
-      "An AI-powered personal operating system for human life and productivity.",
-    description:
-      "Genesis: LifeOS is designed to coordinate personal information, routines, goals, decisions and intelligent assistance across mobile devices.",
-    logo: "/brands/smartcycle-new.png",
-    coverImage: "",
-    featured: false,
-    displayOrder: 5,
-    createdAt: "2026-07-05T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "rfc-ready-food",
-    name: "RFC Ready Food Services",
-    slug: "rfc-ready-food-services",
-    company: "Ready Food Company",
-    category: "Food Services",
-    status: "Published",
-    summary:
-      "Affordable meal production, institutional catering and food delivery.",
-    description:
-      "RFC Ready Food Services provides prepared meals, office catering, delivery, walk-in dining and institutional food-service solutions.",
-    logo: "/brands/rfc-logo.png",
-    coverImage: "",
-    featured: true,
-    displayOrder: 6,
-    createdAt: "2026-07-06T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "rfc-milk-hub",
-    name: "RFC Milk Hub",
-    slug: "rfc-milk-hub",
-    company: "Ready Food Company",
-    category: "Dairy Value Chain",
-    status: "Published",
-    summary:
-      "Milk collection, quality testing, chilling, processing and distribution.",
-    description:
-      "RFC Milk Hub connects dairy farmers with reliable collection, laboratory testing, chilling, processing, packaging and market infrastructure.",
-    logo: "/brands/rfc-logo.png",
-    coverImage: "/news/rfc-milk-hub.jpg",
-    featured: true,
-    displayOrder: 7,
-    createdAt: "2026-07-07T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "rfc-cold-storage",
-    name: "RFC Cold Storage",
-    slug: "rfc-cold-storage",
-    company: "Ready Food Company",
-    category: "Cold Chain",
-    status: "Published",
-    summary:
-      "Cold-storage infrastructure for markets and food distribution.",
-    description:
-      "RFC Cold Storage preserves vegetables, fruits, dairy, meat and other perishable goods while reducing food losses.",
-    logo: "/brands/rfc-logo.png",
-    coverImage: "/news/rfc-cold-storage.jpg",
-    featured: false,
-    displayOrder: 8,
-    createdAt: "2026-07-08T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-  {
-    id: "rfc-car-detail",
-    name: "RFC Car Detail",
-    slug: "rfc-car-detail",
-    company: "Ready Food Company",
-    category: "Automotive Services",
-    status: "Draft",
-    summary:
-      "Professional car wash, detailing and deep-cleaning services.",
-    description:
-      "RFC Car Detail provides fast car wash, interior cleaning, exterior detailing, deep cleaning and vehicle-care services.",
-    logo: "/brands/rfc-logo.png",
-    coverImage: "",
-    featured: false,
-    displayOrder: 9,
-    createdAt: "2026-07-09T08:00:00.000Z",
-    updatedAt: "2026-07-28T08:00:00.000Z",
-  },
-];
+type UnknownRecord = Record<string, unknown>;
+
+function isRecord(value: unknown): value is UnknownRecord {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value)
+  );
+}
+
+function getString(
+  record: UnknownRecord,
+  keys: string[],
+  fallback = ""
+): string {
+  for (const key of keys) {
+    const value = record[key];
+
+    if (
+      typeof value === "string" &&
+      value.trim().length > 0
+    ) {
+      return value.trim();
+    }
+  }
+
+  return fallback;
+}
+
+function getNumber(
+  record: UnknownRecord,
+  keys: string[],
+  fallback: number
+): number {
+  for (const key of keys) {
+    const value = record[key];
+
+    if (
+      typeof value === "number" &&
+      Number.isFinite(value)
+    ) {
+      return value;
+    }
+
+    if (
+      typeof value === "string" &&
+      value.trim() !== "" &&
+      Number.isFinite(Number(value))
+    ) {
+      return Number(value);
+    }
+  }
+
+  return fallback;
+}
+
+function getBoolean(
+  record: UnknownRecord,
+  keys: string[],
+  fallback = false
+): boolean {
+  for (const key of keys) {
+    const value = record[key];
+
+    if (typeof value === "boolean") {
+      return value;
+    }
+  }
+
+  return fallback;
+}
+
+function createSlug(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getAdminCompanyName(
+  companySlug: string,
+  companyName: string
+): AdminProjectCompany {
+  const normalizedSlug = companySlug.toLowerCase();
+  const normalizedName = companyName.toLowerCase();
+
+  if (
+    normalizedSlug.includes("rfc") ||
+    normalizedName.includes("ready food")
+  ) {
+    return "Ready Food Company";
+  }
+
+  if (
+    normalizedSlug.includes("smartcycle") ||
+    normalizedName.includes("smartcycle")
+  ) {
+    return "SmartCycle Technologies";
+  }
+
+  return "BCU Group";
+}
+
+function getProjectStatus(
+  project: UnknownRecord
+): AdminProjectStatus {
+  const status = getString(
+    project,
+    ["status", "projectStatus"],
+    "Published"
+  ).toLowerCase();
+
+  if (status === "draft") {
+    return "Draft";
+  }
+
+  if (status === "archived") {
+    return "Archived";
+  }
+
+  return "Published";
+}
+
+const fallbackDate = "2026-07-28T00:00:00.000Z";
+
+export const starterAdminProjects: AdminProject[] =
+  companies.flatMap((company, companyIndex) => {
+    const companyRecord = company as unknown as UnknownRecord;
+
+    const companyName = getString(
+      companyRecord,
+      ["name", "companyName"],
+      "BCU Group"
+    );
+
+    const companySlug = getString(
+      companyRecord,
+      ["slug", "id"],
+      createSlug(companyName)
+    );
+
+    const companyLogo = getString(
+      companyRecord,
+      ["logo"],
+      ""
+    );
+
+    const adminCompanyName = getAdminCompanyName(
+      companySlug,
+      companyName
+    );
+
+    const rawProjects = Array.isArray(companyRecord.projects)
+      ? companyRecord.projects
+      : [];
+
+    return rawProjects.map(
+      (rawProject, projectIndex): AdminProject => {
+        const project = isRecord(rawProject)
+          ? rawProject
+          : {};
+
+        const name = getString(
+          project,
+          ["name", "title", "projectName"],
+          `Project ${projectIndex + 1}`
+        );
+
+        const slug = getString(
+          project,
+          ["slug", "id"],
+          createSlug(name)
+        );
+
+        const summary = getString(
+          project,
+          [
+            "summary",
+            "shortDescription",
+            "excerpt",
+            "tagline",
+            "description",
+          ],
+          `${name} is a project under ${companyName}.`
+        );
+
+        const description = getString(
+          project,
+          [
+            "description",
+            "fullDescription",
+            "overview",
+            "summary",
+          ],
+          summary
+        );
+
+        const category = getString(
+          project,
+          [
+            "category",
+            "sector",
+            "industry",
+            "type",
+          ],
+          adminCompanyName ===
+          "SmartCycle Technologies"
+            ? "Technology"
+            : adminCompanyName ===
+              "Ready Food Company"
+            ? "Food and Business"
+            : "Strategic Initiative"
+        );
+
+        const coverImage = getString(
+          project,
+          [
+            "coverImage",
+            "image",
+            "featuredImage",
+            "thumbnail",
+            "heroImage",
+          ],
+          ""
+        );
+
+        const logo = getString(
+          project,
+          ["logo", "projectLogo"],
+          companyLogo
+        );
+
+        const createdAt = getString(
+          project,
+          ["createdAt", "createdDate"],
+          fallbackDate
+        );
+
+        const updatedAt = getString(
+          project,
+          ["updatedAt", "lastUpdated"],
+          createdAt
+        );
+
+        return {
+          id: `${companySlug}-${slug}`,
+          name,
+          slug,
+          company: adminCompanyName,
+          category,
+          status: getProjectStatus(project),
+          summary,
+          description,
+          logo,
+          coverImage,
+          featured: getBoolean(
+            project,
+            ["featured", "isFeatured"],
+            false
+          ),
+          displayOrder: getNumber(
+            project,
+            ["displayOrder", "order"],
+            companyIndex * 100 + projectIndex + 1
+          ),
+          createdAt,
+          updatedAt,
+        };
+      }
+    );
+  });
