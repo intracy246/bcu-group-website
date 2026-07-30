@@ -1,0 +1,2 @@
+import{notFound}from"next/navigation";import CareerForm from"@/components/admin/CareerForm";import{getAdminCareer}from"@/lib/career-service";import{prisma}from"@/lib/prisma";
+export default async function Page({params}:{params:Promise<{id:string}>}){const id=(await params).id;const[career,companies]=await Promise.all([getAdminCareer(id),prisma.company.findMany({select:{id:true,name:true}})]);if(!career)notFound();return <CareerForm career={career} companies={companies}/>;}

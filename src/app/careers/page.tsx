@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CareersDirectory from "@/components/careers/CareersDirectory";
-import { getOpenJobs } from "@/data/careers";
+import { listOpenCareers } from "@/lib/career-service";
 
 const cultureValues = [
   {
@@ -40,8 +40,9 @@ const opportunities = [
   "Internships and graduate opportunities",
 ];
 
-export default function CareersPage() {
-  const openJobs = getOpenJobs();
+export const dynamic = "force-dynamic";
+export default async function CareersPage() {
+  const openJobs = await listOpenCareers();
 
   return (
     <>

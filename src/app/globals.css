@@ -10165,3 +10165,10 @@ main {
   color: #fff;
 }
 .admin-login__form [role="alert"] { color: #ff9a9a; }
+.application-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

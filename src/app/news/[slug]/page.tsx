@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import NewsImage from "@/components/news/NewsImage";
-import { getPublishedNewsBySlug, listPublishedNews } from "@/lib/news-service";
+import {
+  getPublishedNewsBySlug,
+  listPublishedNews,
+  type PublicNewsArticleDTO,
+} from "@/lib/news-service";
 
 type NewsArticlePageProps = {
   params: Promise<{
@@ -50,7 +54,7 @@ export default async function NewsArticlePage({
     notFound();
   }
 
-  const relatedArticles = (await listPublishedNews())
+  const relatedArticles: PublicNewsArticleDTO[] = (await listPublishedNews())
     .filter(
       (relatedArticle) =>
         relatedArticle.id !== article.id

@@ -2,36 +2,12 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type {
-  EmploymentType,
-  JobCompany,
-  JobOpening,
-} from "@/data/careers";
+import type { CareerDTO } from "@/lib/career-service";
 
 type CareersDirectoryProps = {
-  jobs: JobOpening[];
+  jobs: CareerDTO[];
 };
-
-type CompanyFilter = "All" | JobCompany;
-type EmploymentFilter = "All" | EmploymentType;
-
-const companyFilters: CompanyFilter[] = [
-  "All",
-  "BCU Group",
-  "Ready Food Company",
-  "SmartCycle Technologies",
-];
-
-const employmentFilters: EmploymentFilter[] = [
-  "All",
-  "Full-time",
-  "Part-time",
-  "Contract",
-  "Internship",
-  "Volunteer",
-];
-
-function getCompanyTheme(company: JobCompany) {
+function getCompanyTheme(company: string) {
   if (company === "Ready Food Company") {
     return "rfc";
   }
@@ -47,12 +23,14 @@ export default function CareersDirectory({
   jobs,
 }: CareersDirectoryProps) {
   const [companyFilter, setCompanyFilter] =
-    useState<CompanyFilter>("All");
+    useState("All");
 
   const [employmentFilter, setEmploymentFilter] =
-    useState<EmploymentFilter>("All");
+    useState("All");
 
   const [searchQuery, setSearchQuery] = useState("");
+  const companyFilters = useMemo(() => ["All", ...Array.from(new Set(jobs.map((job) => job.company)))], [jobs]);
+  const employmentFilters = useMemo(() => ["All", ...Array.from(new Set(jobs.map((job) => job.employmentType)))], [jobs]);
 
   const filteredJobs = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -151,7 +129,7 @@ export default function CareersDirectory({
                 value={employmentFilter}
                 onChange={(event) =>
                   setEmploymentFilter(
-                    event.target.value as EmploymentFilter
+                    event.target.value
                   )
                 }
               >

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  getJobBySlug,
-  getOpenJobs,
-} from "@/data/careers";
+import { getOpenCareerBySlug } from "@/lib/career-service";
+import CareerApplicationForm from "@/components/careers/CareerApplicationForm";
 
 type JobPageProps = {
   params: Promise<{
@@ -20,17 +18,13 @@ function formatDate(date: string) {
   }).format(new Date(date));
 }
 
-export function generateStaticParams() {
-  return getOpenJobs().map((job) => ({
-    slug: job.slug,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: JobPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const job = getJobBySlug(slug);
+  const job = await getOpenCareerBySlug(slug);
 
   if (!job) {
     return {
@@ -40,7 +34,8 @@ export async function generateMetadata({
 
   return {
     title: job.title,
-    description: job.summary,
+    description: job.seoDescription || job.summary,
+    alternates: { canonical: `/careers/${job.slug}` },
   };
 }
 
@@ -48,7 +43,7 @@ export default async function JobPage({
   params,
 }: JobPageProps) {
   const { slug } = await params;
-  const job = getJobBySlug(slug);
+  const job = await getOpenCareerBySlug(slug);
 
   if (!job) {
     notFound();
@@ -56,6 +51,7 @@ export default async function JobPage({
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"JobPosting",title:job.title,description:job.summary,datePosted:job.createdAt,validThrough:job.applicationDeadline||undefined,employmentType:job.employmentType,jobLocation:{["@type"]:"Place",address:job.location},hiringOrganization:{["@type"]:"Organization",name:job.company}}).replaceAll("<","\\u003c")}} />
       <section className="job-detail-hero">
         <div className="job-detail-hero__grid" />
         <div className="job-detail-hero__glow" />
@@ -199,21 +195,7 @@ export default async function JobPage({
 
               <h2>Apply for {job.title}</h2>
 
-              <p>
-                The online application form will be connected to
-                the BCU recruitment database during the backend
-                phase.
-              </p>
-
-              <Link
-                href={`/contact?subject=${encodeURIComponent(
-                  `Application: ${job.title}`
-                )}`}
-                className="button button--gold"
-              >
-                Submit Application Interest
-                <span aria-hidden="true">↗</span>
-              </Link>
+              <CareerApplicationForm careerId={job.id} title={job.title} />
             </section>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import CompaniesManager from "@/components/admin/CompaniesManager";
-import { companies } from "@/data/companies";
+import { listAdminCompanies } from "@/lib/company-service";
 
-export default function AdminCompaniesPage() {
-  return <CompaniesManager companies={companies} />;
+export default async function AdminCompaniesPage() {
+  return <CompaniesManager initialCompanies={await listAdminCompanies()} />;
 }
