@@ -3,18 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import type { PublicSiteSettings } from "@/lib/site-settings";
 
 const navigation = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Our Companies", href: "/companies" },
-  { label: "Projects", href: "/projects" },
-  { label: "Impact", href: "/impact" },
-  { label: "News", href: "/news" },
-  { label: "Careers", href: "/careers" },
+  { label: "Home", href: "/", visible: true },
+  { label: "About", href: "/about", visible: true },
+  { label: "Our Companies", href: "/companies", visible: true },
+  { label: "Projects", href: "/projects", visible: true },
+  { label: "Impact", href: "/impact", visible: true },
+  { label: "News", href: "/news", visible: true },
+  { label: "Careers", href: "/careers", visible: true },
 ];
 
-export default function Navbar() {
+export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -27,7 +28,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen(false)}
         >
           <Image
-            src="/brands/bcu-logo.png"
+            src={settings.header.logo}
             alt="Beneficium Communis Universitas"
             width={64}
             height={64}
@@ -36,9 +37,9 @@ export default function Navbar() {
           />
 
           <div className="brand-copy">
-            <span className="brand-name">BCU GROUP</span>
+            <span className="brand-name">{settings.header.siteLabel}</span>
             <span className="brand-description">
-              Building communities. Creating opportunity.
+              {settings.siteDescription}
             </span>
           </div>
         </Link>
@@ -49,7 +50,7 @@ export default function Navbar() {
           }`}
           aria-label="Primary navigation"
         >
-          {navigation.map((item) => (
+          {(settings.header.navigation.length ? settings.header.navigation : navigation).filter((item) => item.visible !== false).map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -61,11 +62,11 @@ export default function Navbar() {
           ))}
 
           <Link
-            href="/contact"
+            href={settings.header.contactUrl}
             className="nav-contact-button"
             onClick={() => setMenuOpen(false)}
           >
-            Contact Us
+            {settings.header.contactLabel}
           </Link>
         </nav>
 

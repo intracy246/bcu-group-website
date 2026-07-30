@@ -1,0 +1,2 @@
+import { getStoredFile } from "@/lib/storage";
+export async function GET(_:Request,{params}:{params:Promise<{key:string[]}>}){const key=(await params).key.map(decodeURIComponent).join("/");if(!key.startsWith("public/"))return new Response("Not found",{status:404});try{const file=await getStoredFile(key);return new Response(Buffer.from(file.bytes),{headers:{"content-type":file.contentType||"application/octet-stream","cache-control":"public, max-age=31536000, immutable"}});}catch{return new Response("Not found",{status:404});}}

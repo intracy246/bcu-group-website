@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { PublicSiteSettings } from "@/lib/site-settings";
 
 const companyLinks = [
   {
@@ -20,7 +21,7 @@ const corporateLinks = [
   { label: "Careers", href: "/careers" },
 ];
 
-export default function Footer() {
+export default function Footer({ settings }: { settings: PublicSiteSettings }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -32,7 +33,7 @@ export default function Footer() {
           <div className="footer-brand">
             <Link href="/" className="footer-logo-link">
               <Image
-                src="/brands/bcu-logo.png"
+                src={settings.organisationLogo}
                 alt="BCU Group"
                 width={96}
                 height={96}
@@ -40,11 +41,10 @@ export default function Footer() {
               />
             </Link>
 
-            <p className="footer-brand-title">BCU GROUP</p>
+            <p className="footer-brand-title">{settings.siteName.toUpperCase()}</p>
 
             <p className="footer-description">
-              A diversified African corporate group investing in technology,
-              food systems, innovation and sustainable community development.
+              {settings.footer.description}
             </p>
           </div>
 
@@ -77,16 +77,15 @@ export default function Footer() {
 
             <div className="footer-links">
               <Link href="/contact">Contact Us</Link>
-              <a href="mailto:info@bcu.co.tz">info@bcu.co.tz</a>
-              <span>Dar es Salaam, Tanzania</span>
+              {settings.mainEmail ? <a href={`mailto:${settings.mainEmail}`}>{settings.mainEmail}</a> : null}
+              <span>{settings.officeAddress}</span>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>
-            © {currentYear} Beneficium Communis Universitas Limited. All rights
-            reserved.
+            © {currentYear} {settings.footer.copyright}
           </p>
 
           <div className="footer-legal-links">
