@@ -1,0 +1,9 @@
+import { notFound, redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { deleteMessageAction, updateMessageAction } from "@/app/actions/messages";
+export default async function MessagePage({ params }: { params: Promise<{ id: string }> }) {
+  const id=(await params).id; const [message, users]=await Promise.all([prisma.contactMessage.findUnique({where:{id}}),prisma.user.findMany({where:{status:"ACTIVE"},select:{id:true,name:true}})]); if(!message) notFound();
+  return <div className="admin-dashboard"><section className="admin-page-intro"><div><p>{message.status}</p><h2>{message.subject}</h2><p>{message.name} · {message.email} · {message.phone || "No phone"}</p></div></section><section className="admin-form-card"><p>{message.message}</p><small>Received {message.createdAt.toLocaleString()}</small></section>
+    <form action={updateMessageAction} className="admin-form-card"><input type="hidden" name="id" value={id}/><label className="admin-form-field"><span>Status</span><select name="status" defaultValue={message.status}>{["NEW","READ","IN_PROGRESS","RESOLVED","ARCHIVED"].map(item=><option key={item}>{item}</option>)}</select></label><label className="admin-form-field"><span>Assigned administrator</span><select name="assignedUserId" defaultValue={message.assignedUserId??""}><option value="">Unassigned</option>{users.map(user=><option value={user.id} key={user.id}>{user.name}</option>)}</select></label><label className="admin-form-field"><span>Internal notes</span><textarea name="internalNotes" rows={6} defaultValue={message.internalNotes??""}/></label><button className="admin-primary-button">Save changes</button></form>
+    <form action={async(form)=>{"use server";await deleteMessageAction(form);redirect("/admin/messages");}}><input type="hidden" name="id" value={id}/><button className="admin-secondary-button">Delete message</button></form></div>;
+}

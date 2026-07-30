@@ -1,5 +1,6 @@
 import ProjectsManager from "@/components/admin/ProjectsManager";
+import { listAdminProjects } from "@/lib/project-service";
 
-export default function AdminProjectsPage() {
-  return <ProjectsManager />;
+export default async function AdminProjectsPage() {
+  return <ProjectsManager initialProjects={await listAdminProjects()} />;
 }

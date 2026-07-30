@@ -1,7 +1,9 @@
 import Link from "next/link";
 import NewsDirectory from "@/components/news/NewsDirectory";
 import NewsImage from "@/components/news/NewsImage";
-import { getPublishedNews } from "@/data/news";
+import { listPublishedNews } from "@/lib/news-service";
+
+export const dynamic = "force-dynamic";
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -11,8 +13,8 @@ function formatDate(date: string) {
   }).format(new Date(date));
 }
 
-export default function NewsPage() {
-  const articles = getPublishedNews();
+export default async function NewsPage() {
+  const articles = await listPublishedNews();
   const featuredArticle =
     articles.find((article) => article.featured) ??
     articles[0];

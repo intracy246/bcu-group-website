@@ -45,6 +45,11 @@ const navigation = [
     icon: "◉",
   },
   {
+    label: "Website Content",
+    href: "/admin/content",
+    icon: "▤",
+  },
+  {
     label: "Settings",
     href: "/admin/settings",
     icon: "⚙",
@@ -103,6 +108,9 @@ export default function AdminSidebar() {
         </div>
 
         <Link href="/">View Public Website ↗</Link>
+        <form action="/api/auth/logout" method="post">
+          <button type="submit">Sign out</button>
+        </form>
       </div>
     </aside>
   );

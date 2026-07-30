@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import NewsImage from "@/components/news/NewsImage";
-import {
-  getNewsBySlug,
-  getPublishedNews,
-} from "@/data/news";
+import { getPublishedNewsBySlug, listPublishedNews } from "@/lib/news-service";
 
 type NewsArticlePageProps = {
   params: Promise<{
@@ -21,17 +18,13 @@ function formatDate(date: string) {
   }).format(new Date(date));
 }
 
-export function generateStaticParams() {
-  return getPublishedNews().map((article) => ({
-    slug: article.slug,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: NewsArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getNewsBySlug(slug);
+  const article = await getPublishedNewsBySlug(slug);
 
   if (!article) {
     return {
@@ -41,7 +34,9 @@ export async function generateMetadata({
 
   return {
     title: article.title,
-    description: article.excerpt,
+    description: article.seoDescription || article.excerpt,
+    alternates: { canonical: `/news/${article.slug}` },
+    openGraph: { type: "article", title: article.seoTitle || article.title, description: article.seoDescription || article.excerpt, images: article.coverImage ? [{ url: article.coverImage, alt: article.coverImageAlt }] : undefined },
   };
 }
 
@@ -49,13 +44,13 @@ export default async function NewsArticlePage({
   params,
 }: NewsArticlePageProps) {
   const { slug } = await params;
-  const article = getNewsBySlug(slug);
+  const article = await getPublishedNewsBySlug(slug);
 
   if (!article) {
     notFound();
   }
 
-  const relatedArticles = getPublishedNews()
+  const relatedArticles = (await listPublishedNews())
     .filter(
       (relatedArticle) =>
         relatedArticle.id !== article.id

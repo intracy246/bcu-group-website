@@ -2,24 +2,12 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type {
-  NewsArticle,
-  NewsCompany,
-} from "@/data/news";
+import type { NewsDTO } from "@/lib/news-service";
 import NewsImage from "./NewsImage";
 
 type NewsDirectoryProps = {
-  articles: NewsArticle[];
+  articles: NewsDTO[];
 };
-
-type NewsFilter = "All" | NewsCompany;
-
-const filters: NewsFilter[] = [
-  "All",
-  "BCU Group",
-  "Ready Food Company",
-  "SmartCycle Technologies",
-];
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -29,7 +17,7 @@ function formatDate(date: string) {
   }).format(new Date(date));
 }
 
-function getTheme(company: NewsCompany) {
+function getTheme(company: string) {
   if (company === "Ready Food Company") {
     return "rfc";
   }
@@ -45,9 +33,10 @@ export default function NewsDirectory({
   articles,
 }: NewsDirectoryProps) {
   const [activeFilter, setActiveFilter] =
-    useState<NewsFilter>("All");
+    useState("All");
 
   const [searchQuery, setSearchQuery] = useState("");
+  const filters = useMemo(() => ["All", ...Array.from(new Set(articles.map((article) => article.company)))], [articles]);
 
   const filteredArticles = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();

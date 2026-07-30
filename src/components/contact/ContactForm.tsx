@@ -76,21 +76,26 @@ export default function ContactForm() {
 
     setStatus("submitting");
 
-    /*
-      Backend phase:
-      This form will POST to /api/contact and save the
-      enquiry inside PostgreSQL.
-
-      For now we simulate successful submission so the
-      frontend flow can be tested.
-    */
-
-    await new Promise((resolve) =>
-      window.setTimeout(resolve, 900)
-    );
-
-    setStatus("success");
-    setFormData(initialFormState);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          organisation: formData.organisation,
+          subject: `${formData.enquiryType}: ${formData.subject} (${formData.company})`,
+          message: formData.message,
+          website: "",
+        }),
+      });
+      if (!response.ok) throw new Error("Submission failed");
+      setStatus("success");
+      setFormData(initialFormState);
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -261,11 +266,8 @@ export default function ContactForm() {
           className="contact-form__message contact-form__message--success"
           role="status"
         >
-          <strong>Enquiry prepared successfully.</strong>
-          <span>
-            The database submission will become fully
-            operational after the backend is connected.
-          </span>
+          <strong>Enquiry received.</strong>
+          <span>Thank you. BCU Group will respond as soon as possible.</span>
         </div>
       )}
 
@@ -274,10 +276,8 @@ export default function ContactForm() {
           className="contact-form__message contact-form__message--error"
           role="alert"
         >
-          <strong>Consent is required.</strong>
-          <span>
-            Confirm the consent checkbox before submitting.
-          </span>
+          <strong>We could not submit your enquiry.</strong>
+          <span>Check the required fields and consent, then try again.</span>
         </div>
       )}
 

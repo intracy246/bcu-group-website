@@ -2,19 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import {
-  deleteAdminProject,
-  getAdminProjects,
-} from "@/lib/admin-project-store";
-import type {
-  AdminProject,
-  AdminProjectCompany,
-  AdminProjectStatus,
-} from "@/types/admin-project";
+import { useMemo, useState, useTransition } from "react";
+import { deleteProjectAction } from "@/app/actions/projects";
+import type { ProjectDTO } from "@/lib/project-service";
 
-type StatusFilter = "All" | AdminProjectStatus;
-type CompanyFilter = "All" | AdminProjectCompany;
+type StatusFilter = "All" | ProjectDTO["status"];
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -24,17 +16,13 @@ function formatDate(date: string) {
   }).format(new Date(date));
 }
 
-export default function ProjectsManager() {
-  const [projects, setProjects] = useState<AdminProject[]>([]);
+export default function ProjectsManager({initialProjects}:{initialProjects:ProjectDTO[]}) {
+  const [projects, setProjects] = useState(initialProjects);
+  const [pending,startTransition]=useTransition();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] =
     useState<StatusFilter>("All");
-  const [companyFilter, setCompanyFilter] =
-    useState<CompanyFilter>("All");
-
-  useEffect(() => {
-    setProjects(getAdminProjects());
-  }, []);
+  const [companyFilter, setCompanyFilter] = useState("All");
 
   const filteredProjects = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -73,7 +61,7 @@ export default function ProjectsManager() {
     statusFilter,
   ]);
 
-  const handleDelete = (project: AdminProject) => {
+  const handleDelete = (project: ProjectDTO) => {
     const confirmed = window.confirm(
       `Delete "${project.name}"?\n\nThis action will remove the project from the current admin data.`
     );
@@ -82,11 +70,7 @@ export default function ProjectsManager() {
       return;
     }
 
-    deleteAdminProject(project.id);
-
-    setProjects((current) =>
-      current.filter((item) => item.id !== project.id)
-    );
+    startTransition(async()=>{const result=await deleteProjectAction(project.id);if(result.ok)setProjects(current=>current.filter(item=>item.id!==project.id));else window.alert(result.error);});
   };
 
   const publishedCount = projects.filter(
@@ -182,14 +166,12 @@ export default function ProjectsManager() {
                 value={companyFilter}
                 onChange={(event) =>
                   setCompanyFilter(
-                    event.target.value as CompanyFilter
+                    event.target.value
                   )
                 }
               >
                 <option>All</option>
-                <option>BCU Group</option>
-                <option>Ready Food Company</option>
-                <option>SmartCycle Technologies</option>
+                {Array.from(new Set(projects.map(project=>project.company))).map(company=><option key={company}>{company}</option>)}
               </select>
             </label>
 
@@ -306,6 +288,7 @@ export default function ProjectsManager() {
 
                   <button
                     type="button"
+                    disabled={pending}
                     onClick={() => handleDelete(project)}
                   >
                     Delete

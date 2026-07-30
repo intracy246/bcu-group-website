@@ -1,0 +1,308 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum CompanyStatus {
+  DRAFT
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum CareerStatus {
+  DRAFT
+  OPEN
+  CLOSED
+  ARCHIVED
+}
+
+enum ApplicationStatus {
+  NEW
+  REVIEWING
+  SHORTLISTED
+  INTERVIEW
+  REJECTED
+  HIRED
+}
+
+enum MessageStatus {
+  NEW
+  READ
+  IN_PROGRESS
+  RESOLVED
+  ARCHIVED
+}
+
+model User {
+  id           String           @id @default(cuid())
+  name         String
+  email        String           @unique
+  passwordHash String
+  role         UserRole         @default(EDITOR)
+  status       UserStatus       @default(ACTIVE)
+  avatarUrl    String?
+  lastLoginAt  DateTime?
+  sessions     Session[]
+  media        MediaAsset[]
+  messages     ContactMessage[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@index([role, status])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Company {
+  id             String        @id @default(cuid())
+  name           String
+  slug           String        @unique
+  shortName      String
+  summary        String
+  description    String
+  logoUrl        String?
+  coverImageUrl  String?
+  websiteUrl     String?
+  email          String?
+  phone          String?
+  location       String?
+  industry       String?
+  status         CompanyStatus @default(DRAFT)
+  featured       Boolean       @default(false)
+  sortOrder      Int           @default(0)
+  seoTitle       String?
+  seoDescription String?
+  projects       Project[]
+  articles       NewsArticle[]
+  careers        Career[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status, sortOrder])
+}
+
+model Project {
+  id             String        @id @default(cuid())
+  title          String
+  slug           String        @unique
+  summary        String
+  description    Json
+  companyId      String
+  company        Company       @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  category       String
+  status         ContentStatus @default(DRAFT)
+  featured       Boolean       @default(false)
+  coverImageUrl  String?
+  coverImageAlt  String?
+  location       String?
+  startDate      DateTime?
+  completionDate DateTime?
+  tags           String[]
+  sortOrder      Int           @default(0)
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status, featured, sortOrder])
+  @@index([companyId, status])
+}
+
+model NewsArticle {
+  id             String        @id @default(cuid())
+  title          String
+  slug           String        @unique
+  excerpt        String
+  content        Json
+  category       String
+  companyId      String?
+  company        Company?      @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  status         ContentStatus @default(DRAFT)
+  featured       Boolean       @default(false)
+  coverImage     String?
+  coverImageAlt  String?
+  author         String
+  publishedAt    DateTime?
+  readingTime    Int           @default(1)
+  tags           String[]
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([companyId, status])
+}
+
+model Career {
+  id                  String           @id @default(cuid())
+  title               String
+  slug                String           @unique
+  companyId           String
+  company             Company          @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  department          String
+  location            String
+  employmentType      String
+  workMode            String
+  summary             String
+  description         Json
+  responsibilities    String[]
+  requirements        String[]
+  benefits            String[]
+  applicationDeadline DateTime?
+  status              CareerStatus     @default(DRAFT)
+  featured            Boolean          @default(false)
+  coverImageUrl       String?
+  seoTitle            String?
+  seoDescription      String?
+  applications        JobApplication[]
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([status, applicationDeadline])
+  @@index([companyId, status])
+}
+
+model JobApplication {
+  id            String            @id @default(cuid())
+  careerId      String
+  career        Career            @relation(fields: [careerId], references: [id], onDelete: Restrict)
+  applicantName String
+  email         String
+  phone         String?
+  location      String?
+  coverLetter   String
+  cvUrl         String
+  portfolioUrl  String?
+  status        ApplicationStatus @default(NEW)
+  internalNotes String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@index([careerId, status])
+  @@index([email])
+}
+
+model ContactMessage {
+  id               String        @id @default(cuid())
+  name             String
+  email            String
+  phone            String?
+  organisation     String?
+  subject          String
+  message          String
+  status           MessageStatus @default(NEW)
+  internalNotes    String?
+  assignedUserId   String?
+  assignedUser     User?         @relation(fields: [assignedUserId], references: [id], onDelete: SetNull)
+  notificationSent Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@index([status, createdAt])
+  @@index([assignedUserId])
+}
+
+model MediaAsset {
+  id           String   @id @default(cuid())
+  fileName     String
+  originalName String
+  url          String   @unique
+  storageKey   String   @unique
+  mimeType     String
+  fileSize     Int
+  width        Int?
+  height       Int?
+  altText      String?
+  caption      String?
+  folder       String   @default("general")
+  uploadedById String
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id], onDelete: Restrict)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([folder, mimeType])
+}
+
+model SiteSetting {
+  key       String   @id
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SitePage {
+  id             String        @id @default(cuid())
+  key            String        @unique
+  title          String
+  slug           String        @unique
+  status         ContentStatus @default(PUBLISHED)
+  seoTitle       String?
+  seoDescription String?
+  sections       PageSection[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model PageSection {
+  id        String   @id @default(cuid())
+  pageId    String
+  page      SitePage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  key       String
+  type      String
+  content   Json
+  visible   Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([pageId, key])
+  @@index([pageId, visible, sortOrder])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entityType String
+  entityId   String?
+  summary    String
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([entityType, entityId])
+}
