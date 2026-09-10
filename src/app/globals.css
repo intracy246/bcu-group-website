@@ -2544,6 +2544,240 @@ main {
   }
 }
 
+/* Legacy placement retained only as a comment; final overrides are at EOF.
+  Responsive admin shell and shared management surfaces.
+.admin-topbar > div:first-child,
+.admin-page-intro > div,
+.admin-news-form__header > div,
+.admin-dashboard__welcome > div {
+  min-width: 0;
+}
+
+.admin-topbar > div:first-child h1,
+.admin-page-intro h2,
+.admin-news-form__header h2,
+.admin-dashboard__welcome h2 {
+  overflow-wrap: anywhere;
+}
+
+.admin-sidebar__scrim,
+.admin-topbar__menu-button {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .admin-shell__main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .admin-sidebar {
+    display: flex;
+    width: min(285px, 86vw);
+    transform: translateX(-105%);
+    transition: transform 180ms ease;
+  }
+
+  .admin-sidebar--open {
+    transform: translateX(0);
+  }
+
+  .admin-sidebar__scrim {
+    position: fixed;
+    z-index: 45;
+    inset: 0;
+    display: block;
+    border: 0;
+    background: rgba(0, 0, 0, 0.68);
+    cursor: pointer;
+  }
+
+  .admin-topbar {
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .admin-topbar__menu-button {
+    display: inline-grid;
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: #0d0d0d;
+    color: #d7b344;
+    cursor: pointer;
+    font-size: 1.05rem;
+  }
+
+  .admin-topbar > div:first-child {
+    flex: 1 1 auto;
+  }
+
+  .admin-shell__content {
+    min-width: 0;
+    padding: 25px 20px 40px;
+  }
+}
+
+@media (max-width: 650px) {
+  .admin-topbar {
+    min-height: 76px;
+    align-items: center;
+    padding: 10px 14px;
+  }
+
+  .admin-topbar > div:first-child p {
+    overflow: hidden;
+    font-size: 0.5rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .admin-topbar > div:first-child h1 {
+    margin-top: 4px;
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .admin-topbar__actions {
+    flex: 0 0 auto;
+    gap: 5px;
+  }
+
+  .admin-topbar__icon-button,
+  .admin-topbar__menu-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .admin-topbar__profile {
+    min-height: 42px;
+    margin-left: 0;
+    padding: 2px;
+    border: 0;
+    background: transparent;
+  }
+
+  .admin-topbar__profile > span {
+    width: 36px;
+    height: 36px;
+  }
+
+  .admin-shell__content {
+    padding: 18px 12px 32px;
+  }
+
+  .admin-dashboard__welcome,
+  .admin-page-intro,
+  .admin-form-card,
+  .admin-form-section,
+  .admin-panel {
+    border-radius: 14px;
+  }
+
+  .admin-dashboard__welcome,
+  .admin-page-intro {
+    min-height: 0;
+    gap: 22px;
+    padding: 22px 18px;
+  }
+
+  .admin-dashboard__welcome h2 {
+    margin-top: 14px;
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1;
+  }
+
+  .admin-stat-card {
+    min-height: 0;
+  }
+
+  .admin-form-grid,
+  .admin-news-form__sidebar,
+  .admin-company-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-form-card,
+  .admin-form-section,
+  .admin-panel,
+  .admin-data-panel {
+    min-width: 0;
+    padding: 18px;
+  }
+
+  .admin-form-actions,
+  .admin-news-form__header-actions,
+  .admin-news-details__actions,
+  .admin-project-controls,
+  .admin-company-controls,
+  .admin-data-panel__toolbar {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-form-actions > *,
+  .admin-news-form__header-actions > *,
+  .admin-news-details__actions > *,
+  .admin-project-controls > *,
+  .admin-company-controls > * {
+    width: 100%;
+    max-width: none;
+  }
+
+  .admin-table-footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding-top: 18px;
+  }
+
+  .admin-table-footer > div {
+    flex-wrap: wrap;
+  }
+
+  .admin-news-table,
+  .admin-company-table,
+  .admin-project-table,
+  .admin-careers-table {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+
+  .admin-news-table__header,
+  .admin-news-row,
+  .admin-company-table__header,
+  .admin-company-row,
+  .admin-project-table__header,
+  .admin-project-row,
+  .admin-careers-table__header,
+  .admin-careers-row {
+    min-width: 900px;
+  }
+}
+
+Keep editorial public headings bold without letting them dominate phones.
+.section-heading,
+.section-header-row > * {
+  min-width: 0;
+}
+
+@media (max-width: 650px) {
+  .section-heading h2 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    line-height: 1.04;
+  }
+
+  .section-heading h2 span {
+    display: inline;
+  }
+}
+
+*/
+
 @media (max-width: 600px) {
   .about-hero__content h1 {
     font-size: clamp(3.4rem, 18vw, 5.5rem);
@@ -10200,4 +10434,216 @@ main {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+/* Final responsive overrides for the admin shell and shared content surfaces. */
+.admin-topbar > div:first-child,
+.admin-page-intro > div,
+.admin-news-form__header > div,
+.admin-dashboard__welcome > div,
+.admin-panel,
+.admin-form-card,
+.admin-form-section {
+  min-width: 0;
+}
+
+.admin-topbar > div:first-child h1,
+.admin-page-intro h2,
+.admin-news-form__header h2,
+.admin-dashboard__welcome h2 {
+  overflow-wrap: anywhere;
+}
+
+.admin-sidebar__scrim,
+.admin-topbar__menu-button {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .admin-shell__main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .admin-sidebar {
+    display: flex;
+    width: min(285px, 86vw);
+    transform: translateX(-105%);
+    transition: transform 180ms ease;
+  }
+
+  .admin-sidebar--open {
+    transform: translateX(0);
+  }
+
+  .admin-sidebar__scrim {
+    position: fixed;
+    z-index: 45;
+    inset: 0;
+    display: block;
+    border: 0;
+    background: rgba(0, 0, 0, 0.68);
+  }
+
+  .admin-topbar {
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .admin-topbar__menu-button {
+    display: inline-grid;
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: #0d0d0d;
+    color: #d7b344;
+    cursor: pointer;
+  }
+
+  .admin-topbar > div:first-child {
+    flex: 1 1 auto;
+  }
+
+  .admin-shell__content {
+    min-width: 0;
+    padding: 25px 20px 40px;
+  }
+}
+
+@media (max-width: 650px) {
+  .admin-topbar {
+    min-height: 76px;
+    padding: 10px 14px;
+  }
+
+  .admin-topbar > div:first-child p {
+    overflow: hidden;
+    font-size: 0.5rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .admin-topbar > div:first-child h1 {
+    margin-top: 4px;
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .admin-topbar__actions {
+    flex: 0 0 auto;
+    gap: 5px;
+  }
+
+  .admin-topbar__icon-button,
+  .admin-topbar__menu-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .admin-topbar__profile {
+    min-height: 42px;
+    margin-left: 0;
+    padding: 2px;
+    border: 0;
+    background: transparent;
+  }
+
+  .admin-topbar__profile > span {
+    width: 36px;
+    height: 36px;
+  }
+
+  .admin-shell__content {
+    padding: 18px 12px 32px;
+  }
+
+  .admin-dashboard__welcome,
+  .admin-page-intro {
+    min-height: 0;
+    gap: 22px;
+    padding: 22px 18px;
+  }
+
+  .admin-dashboard__welcome h2 {
+    margin-top: 14px;
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1;
+  }
+
+  .admin-stat-grid,
+  .admin-form-grid,
+  .admin-news-form__sidebar,
+  .admin-company-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-form-card,
+  .admin-form-section,
+  .admin-panel,
+  .admin-data-panel {
+    padding: 18px;
+  }
+
+  .admin-form-actions,
+  .admin-news-form__header-actions,
+  .admin-news-details__actions,
+  .admin-project-controls,
+  .admin-company-controls,
+  .admin-data-panel__toolbar {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-form-actions > *,
+  .admin-news-form__header-actions > *,
+  .admin-news-details__actions > *,
+  .admin-project-controls > *,
+  .admin-company-controls > * {
+    width: 100%;
+    max-width: none;
+  }
+
+  .admin-table-footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding-top: 18px;
+  }
+
+  .admin-table-footer > div {
+    flex-wrap: wrap;
+  }
+
+  .admin-news-table,
+  .admin-company-table,
+  .admin-project-table,
+  .admin-careers-table {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+
+  .admin-news-table__header,
+  .admin-news-row,
+  .admin-company-table__header,
+  .admin-company-row,
+  .admin-project-table__header,
+  .admin-project-row,
+  .admin-careers-table__header,
+  .admin-careers-row {
+    min-width: 900px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    line-height: 1.04;
+  }
+}
+
+.section-heading,
+.section-header-row > * {
+  min-width: 0;
 }

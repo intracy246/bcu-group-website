@@ -57,11 +57,11 @@ const navigation = [
   },
 ];
 
-export default function AdminSidebar() {
+export default function AdminSidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname();
 
   return (
-    <aside className="admin-sidebar">
+    <aside className={`admin-sidebar${open ? " admin-sidebar--open" : ""}`} aria-label="Admin navigation">
       <div className="admin-sidebar__brand">
         <Link href="/admin">
           <span className="admin-sidebar__brand-symbol">B</span>
@@ -73,7 +73,7 @@ export default function AdminSidebar() {
         </Link>
       </div>
 
-      <nav className="admin-sidebar__navigation">
+      <nav id="admin-navigation" aria-label="Admin navigation" className="admin-sidebar__navigation">
         <p>Management</p>
 
         {navigation.map((item) => {
@@ -86,6 +86,7 @@ export default function AdminSidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={
                 isActive
                   ? "admin-sidebar__link admin-sidebar__link--active"
