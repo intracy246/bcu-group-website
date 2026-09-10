@@ -14,7 +14,7 @@ const titles: Record<string, string> = {
   "/admin/settings": "System Settings",
 };
 
-export default function AdminTopbar() {
+export default function AdminTopbar({ onMenuClick }: { onMenuClick: () => void }) {
   const pathname = usePathname();
 
   const title =
@@ -27,6 +27,7 @@ export default function AdminTopbar() {
 
   return (
     <header className="admin-topbar">
+      <button type="button" className="admin-topbar__menu-button" aria-label="Open navigation menu" aria-controls="admin-navigation" onClick={onMenuClick}>☰</button>
       <div>
         <p>BCU Group Administration</p>
         <h1>{title}</h1>
