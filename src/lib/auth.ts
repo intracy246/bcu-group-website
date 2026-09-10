@@ -20,7 +20,7 @@ export async function authenticate(email: string, password: string) {
     prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } }),
   ]);
   (await cookies()).set(COOKIE_NAME, token, {
-    httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production",
+    httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") === true,
     path: "/", expires: expiresAt,
   });
   return { id: user.id, name: user.name, email: user.email, role: user.role };

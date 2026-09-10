@@ -50,7 +50,7 @@ export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
           }`}
           aria-label="Primary navigation"
         >
-          {(settings.header.navigation.length ? settings.header.navigation : navigation).filter((item) => item.visible !== false).map((item) => (
+          {(settings.header.navigation.length ? settings.header.navigation : navigation).filter((item) => item.visible !== false && item.href !== "/team").map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -61,6 +61,7 @@ export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
             </Link>
           ))}
 
+          <Link href="/team" className="nav-link" onClick={() => setMenuOpen(false)}>Our Team</Link>
           <Link
             href={settings.header.contactUrl}
             className="nav-contact-button"

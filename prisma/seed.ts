@@ -14,7 +14,7 @@ async function main() {
   }
   await prisma.user.upsert({
     where: { email: adminEmail },
-    update: { name: process.env.ADMIN_NAME || "BCU Administrator", status: "ACTIVE" },
+    update: {},
     create: { name: process.env.ADMIN_NAME || "BCU Administrator", email: adminEmail, passwordHash: await bcrypt.hash(adminPassword, 12), role: "SUPER_ADMIN" },
   });
 
@@ -27,7 +27,7 @@ async function main() {
   for (const [index, company] of companies.entries()) {
     const saved = await prisma.company.upsert({
       where: { slug: company.slug },
-      update: { name: company.name, summary: company.tagline, description: company.description, logoUrl: company.logo },
+      update: {},
       create: { id: company.id, name: company.name, slug: company.slug, shortName: company.shortName, summary: company.tagline, description: company.description, logoUrl: company.logo, industry: company.sectors.join(", "), status: "ACTIVE", featured: true, sortOrder: index + 1 },
     });
     companyIds.set(company.name, saved.id);
@@ -62,7 +62,12 @@ async function main() {
     defaultSeoDescription: "Building institutions that move Africa forward.",
     contactNotificationEmail: process.env.CONTACT_NOTIFICATION_EMAIL || "",
     careerNotificationEmail: process.env.CAREER_NOTIFICATION_EMAIL || "", maintenanceMode: false,
-  })) await prisma.siteSetting.upsert({ where: { key }, update: { value }, create: { key, value } });
+  })) await prisma.siteSetting.upsert({ where: { key }, update: {}, create: { key, value } });
+
+  await prisma.teamMember.upsert({
+    where: { slug: "winslet-makweta" }, update: {},
+    create: { name: "Winslet Makweta", slug: "winslet-makweta", title: "Founder & CEO", secondaryTitle: "Technology Developer / Entrepreneur", company: "BCU Group", profileType: "FOUNDER_PORTFOLIO", skills: [], expertise: [], published: false, featured: true },
+  });
 
   for (const page of [
     { key: "home", title: "Home", slug: "/" }, { key: "about", title: "About", slug: "/about" },

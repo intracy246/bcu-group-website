@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigation = [
+  { label: "Our Team", href: "/admin/team", icon: "◎" },
   {
     label: "Dashboard",
     href: "/admin",

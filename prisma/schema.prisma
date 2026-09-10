@@ -115,6 +115,7 @@ model Company {
 }
 
 model Project {
+  teamPortfolioProjects TeamPortfolioProject[]
   id             String        @id @default(cuid())
   title          String
   slug           String        @unique
@@ -139,6 +140,70 @@ model Project {
 
   @@index([status, featured, sortOrder])
   @@index([companyId, status])
+}
+
+enum TeamProfileType {
+  STANDARD
+  FOUNDER_PORTFOLIO
+}
+
+model TeamMember {
+  id String @id @default(cuid())
+  name String
+  slug String @unique
+  title String
+  secondaryTitle String @default("")
+  company String @default("")
+  department String @default("")
+  shortBio String @default("")
+  biography String @default("")
+  photo String @default("")
+  email String @default("")
+  phone String @default("")
+  location String @default("")
+  linkedinUrl String @default("")
+  githubUrl String @default("")
+  websiteUrl String @default("")
+  otherSocialLinks Json @default("[]")
+  skills String[]
+  expertise String[]
+  achievements Json @default("[]")
+  experience Json @default("[]")
+  education Json @default("[]")
+  leadership Json @default("[]")
+  technology String @default("")
+  vision String @default("")
+  publicContact Boolean @default(false)
+  featured Boolean @default(false)
+  published Boolean @default(false)
+  displayOrder Int @default(0)
+  profileType TeamProfileType @default(STANDARD)
+  seoTitle String @default("")
+  seoDescription String @default("")
+  portfolioProjects TeamPortfolioProject[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, displayOrder])
+}
+
+model TeamPortfolioProject {
+  id String @id @default(cuid())
+  teamMemberId String
+  teamMember TeamMember @relation(fields: [teamMemberId], references: [id], onDelete: Cascade)
+  projectId String?
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  name String @default("")
+  category String @default("")
+  description String @default("")
+  role String @default("")
+  technologies String[]
+  image String @default("")
+  link String @default("")
+  displayOrder Int @default(0)
+
+  @@index([teamMemberId, displayOrder])
+  @@index([projectId])
 }
 
 model NewsArticle {
