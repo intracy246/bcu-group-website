@@ -10436,6 +10436,102 @@ Keep editorial public headings bold without letting them dominate phones.
   overflow: hidden;
 }
 
+/* Public editorial type scale: long CMS copy stays expressive without becoming display type. */
+.section-heading h2 {
+  font-size: clamp(2.2rem, 4.2vw, 4.6rem);
+  line-height: 1.06;
+}
+
+.company-profile__long-heading h2 {
+  max-width: 1040px;
+  font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+
+.company-profile-hero h1 {
+  font-size: clamp(3.6rem, 6.4vw, 6.4rem);
+  line-height: 0.94;
+}
+
+.company-profile-tagline {
+  font-size: clamp(1.35rem, 2.2vw, 2.2rem);
+  line-height: 1.25;
+}
+
+.company-overview-heading h2,
+.company-projects-title h2 {
+  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  line-height: 1.04;
+}
+
+.company-profile-page .about-hero__content h1,
+.companies-page-hero__content h1,
+.projects-page-hero__content h1 {
+  font-size: clamp(3.4rem, 6.2vw, 6.2rem);
+  line-height: 0.96;
+}
+
+.company-profile-page .about-hero__lead {
+  max-width: 720px;
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.site-footer,
+.footer-container,
+.hero-section,
+.projects-page-hero,
+.companies-page-hero {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.company-directory-card,
+.company-directory-card__content,
+.project-related-card,
+.portfolio-project-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hero-title {
+  font-size: clamp(3.4rem, 6.5vw, 6.4rem);
+  line-height: 0.9;
+}
+
+.cta-content h2,
+.impact-sustainability__content h2 {
+  font-size: clamp(2.5rem, 5vw, 5.2rem);
+  line-height: 1.02;
+}
+
+@media (max-width: 650px) {
+  .section-heading h2 {
+    font-size: clamp(2rem, 8.5vw, 2.8rem);
+  }
+
+  .company-profile__long-heading h2 {
+    font-size: clamp(1.65rem, 6.2vw, 2.25rem);
+    line-height: 1.16;
+  }
+
+  .company-profile-hero h1 {
+    font-size: clamp(2.8rem, 13vw, 4.2rem);
+  }
+
+  .company-profile-page .about-hero__content h1,
+  .companies-page-hero__content h1,
+  .projects-page-hero__content h1 {
+    font-size: clamp(2.6rem, 12vw, 4rem);
+    line-height: 1;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 15vw, 4.5rem);
+  }
+}
+
 /* Final responsive overrides for the admin shell and shared content surfaces. */
 .admin-topbar > div:first-child,
 .admin-page-intro > div,

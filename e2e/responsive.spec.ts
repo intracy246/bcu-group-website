@@ -56,6 +56,8 @@ test("public routes keep responsive width and heading hierarchy", async ({ page 
     }
     if (width === 390) {
       await page.screenshot({ path: "test-results/public-home-390.png", fullPage: true });
+      await page.goto("/companies/rfc");
+      await page.screenshot({ path: "test-results/public-rfc-390.png", fullPage: true });
       await page.goto("/team");
       await page.screenshot({ path: "test-results/public-team-390.png", fullPage: true });
       await page.goto("/companies");
@@ -64,6 +66,14 @@ test("public routes keep responsive width and heading hierarchy", async ({ page 
     if (width === 1440) {
       await page.goto("/");
       await page.screenshot({ path: "test-results/public-home-1440.png", fullPage: true });
+      await page.goto("/companies/rfc");
+      await page.screenshot({ path: "test-results/public-rfc-1440.png", fullPage: true });
+      await page.goto("/companies");
+      await page.screenshot({ path: "test-results/public-companies-1440.png", fullPage: true });
+      await page.goto("/projects");
+      await page.screenshot({ path: "test-results/public-projects-1440.png", fullPage: true });
+      await page.goto("/team");
+      await page.screenshot({ path: "test-results/public-team-1440.png", fullPage: true });
     }
   }
 });
