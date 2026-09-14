@@ -2544,8 +2544,8 @@ main {
   }
 }
 
-/* Legacy placement retained only as a comment; final overrides are at EOF.
-  Responsive admin shell and shared management surfaces.
+/* Legacy placement retained only as a comment; final overrides are at EOF. */
+/* Responsive admin shell and shared management surfaces. */
 .admin-topbar > div:first-child,
 .admin-page-intro > div,
 .admin-news-form__header > div,
@@ -2759,7 +2759,7 @@ main {
   }
 }
 
-Keep editorial public headings bold without letting them dominate phones.
+/* Keep editorial public headings bold without letting them dominate phones. */
 .section-heading,
 .section-header-row > * {
   min-width: 0;
@@ -2767,8 +2767,11 @@ Keep editorial public headings bold without letting them dominate phones.
 
 .admin-sidebar__close { display: none; }
 
+.admin-team-table, .admin-users-table { overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: 9px; }.admin-team-table__header, .admin-team-row { display: grid; grid-template-columns: minmax(180px,1.1fr) minmax(120px,.8fr) 110px 100px 160px minmax(245px,1.3fr); align-items: center; gap: 14px; }.admin-users-table__header, .admin-user-row { display: grid; grid-template-columns: minmax(130px,.9fr) minmax(150px,1fr) 100px 90px 105px 105px minmax(220px,1.2fr); align-items: center; gap: 14px; }.admin-team-table__header, .admin-users-table__header { min-height: 48px; padding: 0 16px; border-bottom: 1px solid rgba(255,255,255,.08); color: #858585; font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }.admin-team-row, .admin-user-row { min-height: 94px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.07); color: #bbb; font-size: .78rem; }.admin-team-row:hover, .admin-user-row:hover { background: rgba(212,175,55,.035); }.admin-team-row:last-child, .admin-user-row:last-child { border-bottom: 0; }.admin-team-row__member, .admin-user-row__identity { display: flex; min-width: 0; align-items: center; gap: 11px; }.admin-team-row__portrait, .admin-user-row__identity > span { display: grid; width: 46px; height: 46px; flex: 0 0 auto; place-items: center; overflow: hidden; border: 1px solid rgba(212,175,55,.3); border-radius: 8px; background: #191919; color: #d9b449; font-size: .72rem; font-weight: 800; }.admin-team-row__portrait img { width: 100%; height: 100%; object-fit: cover; }.admin-team-row__member strong, .admin-team-row__member small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.admin-team-row__member strong, .admin-user-row__identity strong { color: #f2f2f2; font-size: .86rem; }.admin-team-row__member small { margin-top: 5px; color: #888; font-size: .7rem; }.admin-type-badge, .admin-role-badge { display: inline-flex; width: fit-content; padding: 5px 7px; border: 1px solid rgba(255,255,255,.14); border-radius: 5px; color: #c5c5c5; font-size: .63rem; font-weight: 800; letter-spacing: .04em; }.admin-role-badge--super_admin { border-color: rgba(212,175,55,.4); color: #e0bd50; }.admin-role-badge--admin { border-color: rgba(82,150,212,.35); color: #8dbcea; }.admin-role-badge--editor { border-color: rgba(95,195,142,.3); color: #85d6a7; }.admin-team-row__controls { display: contents; }.admin-team-row__controls fieldset { display: flex; align-items: end; gap: 6px; margin: 0; padding: 0; border: 0; }.admin-order-field { display: grid; gap: 5px; color: #888; font-size: .63rem; }.admin-order-field input { width: 72px; min-height: 34px; padding: 0 7px; border: 1px solid rgba(255,255,255,.13); border-radius: 6px; background: #151515; color: #eee; }.admin-team-row__controls .admin-secondary-button { min-height: 34px; padding: 0 9px; }.admin-management-row__actions { min-width: 0; }.admin-user-row { position: relative; }.admin-user-row__panel { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)) auto; align-items: end; gap: 12px; margin-top: 4px; padding: 15px; border: 1px solid rgba(212,175,55,.2); border-radius: 7px; background: #111; }.admin-user-row__password { grid-template-columns: minmax(220px, 420px) auto; }.admin-user-row time { color: #8d8d8d; font-size: .72rem; }.admin-user-row__panel .admin-primary-button, .admin-user-row__panel .admin-secondary-button { min-height: 44px; }
+
 @media (max-width: 900px) {
   .admin-sidebar__close { display: inline-flex; min-height: 34px; align-items: center; justify-content: center; margin: 12px 12px 0 auto; padding: 0 10px; border: 1px solid rgba(255,255,255,.15); border-radius: 6px; background: #171717; color: #eee; cursor: pointer; font-size: .72rem; }
+  .admin-team-table__header, .admin-users-table__header { display: none; }.admin-team-row, .admin-user-row { display: flex; min-height: 0; align-items: flex-start; flex-direction: column; gap: 10px; }.admin-team-row > [data-label], .admin-user-row > [data-label], .admin-user-row time { display: flex; gap: 7px; }.admin-team-row > [data-label]::before, .admin-user-row > [data-label]::before, .admin-user-row time::before { color: #777; content: attr(data-label) ":"; font-size: .65rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }.admin-team-row__controls { display: flex; width: 100%; align-items: flex-start; flex-direction: column; gap: 10px; }.admin-team-row__controls fieldset { flex-wrap: wrap; }.admin-user-row__panel { width: 100%; grid-template-columns: 1fr; }.admin-user-row__password { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 650px) {
@@ -2781,8 +2784,6 @@ Keep editorial public headings bold without letting them dominate phones.
     display: inline;
   }
 }
-
-*/
 
 @media (max-width: 600px) {
   .about-hero__content h1 {
