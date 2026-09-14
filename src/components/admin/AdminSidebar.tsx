@@ -63,6 +63,7 @@ export default function AdminSidebar({ open, onClose }: { open: boolean; onClose
   return (
     <aside className={`admin-sidebar${open ? " admin-sidebar--open" : ""}`} aria-label="Admin navigation">
       <div className="admin-sidebar__brand">
+        <button type="button" className="admin-sidebar__close" aria-label="Close navigation menu" onClick={onClose}>Close</button>
         <Link href="/admin">
           <span className="admin-sidebar__brand-symbol">B</span>
 
