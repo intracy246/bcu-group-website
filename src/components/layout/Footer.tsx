@@ -9,7 +9,7 @@ const companyLinks = [
   },
   {
     label: "SmartCycle Technologies",
-    href: "/companies/smartcycle",
+    href: "https://smartcycle360.com",
   },
 ];
 
@@ -52,11 +52,17 @@ export default function Footer({ settings }: { settings: PublicSiteSettings }) {
             <h3>Our Companies</h3>
 
             <div className="footer-links">
-              {companyLinks.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  {link.label}
-                </Link>
-              ))}
+              {companyLinks.map((link) =>
+                link.href.startsWith("http") ? (
+                  <a key={link.href} href={link.href}>
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link key={link.href} href={link.href}>
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
           </div>
 
