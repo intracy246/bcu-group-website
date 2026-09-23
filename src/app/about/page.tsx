@@ -195,8 +195,8 @@ export default function AboutPage() {
                 </p>
               </Link>
 
-              <Link
-                href="/companies/smartcycle"
+              <a
+                href="https://smartcycle360.com"
                 className="about-structure__company about-structure__company--smartcycle"
               >
                 <span>Technology & Digital Infrastructure</span>
@@ -205,7 +205,7 @@ export default function AboutPage() {
                   Artificial intelligence, GovTech, enterprise systems and
                   smart infrastructure.
                 </p>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
