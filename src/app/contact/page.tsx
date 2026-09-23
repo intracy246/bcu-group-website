@@ -288,7 +288,7 @@ export default function ContactPage() {
             </Link>
 
             <a
-              href="https://smartcycle.com"
+              href="https://smartcycle360.com"
               className="contact-company-card contact-company-card--smartcycle"
             >
               <span>SmartCycle Technologies</span>
