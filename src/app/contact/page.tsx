@@ -287,8 +287,8 @@ export default function ContactPage() {
               </strong>
             </Link>
 
-            <Link
-              href="/companies/smartcycle"
+            <a
+              href="https://smartcycle.com"
               className="contact-company-card contact-company-card--smartcycle"
             >
               <span>SmartCycle Technologies</span>
@@ -302,7 +302,7 @@ export default function ContactPage() {
                 Explore SmartCycle
                 <span aria-hidden="true">↗</span>
               </strong>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
