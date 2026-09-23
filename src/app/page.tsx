@@ -262,10 +262,10 @@ export default function Home() {
                   <span>Enterprise</span>
                 </div>
 
-                <Link href="/companies/smartcycle" className="company-link">
+                <a href="https://smartcycle.com" className="company-link">
                   Explore SmartCycle
                   <span aria-hidden="true">↗</span>
-                </Link>
+                </a>
               </div>
             </article>
           </div>
