@@ -81,7 +81,11 @@ export default async function CompaniesPage() {
                   </div>
                   <div className="company-directory-card__footer">
                     <div><strong>{company.projectCount}</strong><span>Projects and business units</span></div>
-                    <Link href={`/companies/${company.slug}`}>Explore Company<span aria-hidden="true">↗</span></Link>
+                    {company.slug === "smartcycle" ? (
+                      <a href="https://smartcycle360.com">Explore Company<span aria-hidden="true">↗</span></a>
+                    ) : (
+                      <Link href={`/companies/${company.slug}`}>Explore Company<span aria-hidden="true">↗</span></Link>
+                    )}
                   </div>
                 </div>
               </article>
