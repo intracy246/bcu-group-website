@@ -303,7 +303,7 @@ export default function ImpactPage() {
                 <span>Education and enterprise digitisation</span>
               </div>
 
-              <a href="https://smartcycle.com">
+              <a href="https://smartcycle360.com">
                 Explore SmartCycle Impact
                 <span aria-hidden="true">↗</span>
               </a>
