@@ -217,10 +217,10 @@ export default function Home() {
                   <span>Logistics</span>
                 </div>
 
-                <Link href="/companies/rfc" className="company-link">
+                <a href="https://rfc-web-zeta.vercel.app/" className="company-link">
                   Explore RFC
                   <span aria-hidden="true">↗</span>
-                </Link>
+                </a>
               </div>
             </article>
 
