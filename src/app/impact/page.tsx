@@ -274,10 +274,10 @@ export default function ImpactPage() {
                 <span>Employment and enterprise creation</span>
               </div>
 
-              <Link href="/companies/rfc">
+              <a href="https://rfc-web-zeta.vercel.app/">
                 Explore RFC Impact
                 <span aria-hidden="true">↗</span>
-              </Link>
+              </a>
             </article>
 
             <article className="impact-company-card impact-company-card--smartcycle">
