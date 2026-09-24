@@ -5,7 +5,7 @@ import type { PublicSiteSettings } from "@/lib/site-settings";
 const companyLinks = [
   {
     label: "Ready Food Company",
-    href: "/companies/rfc",
+    href: "https://rfc-web-zeta.vercel.app/",
   },
   {
     label: "SmartCycle Technologies",
