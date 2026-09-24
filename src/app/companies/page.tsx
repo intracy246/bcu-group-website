@@ -81,7 +81,9 @@ export default async function CompaniesPage() {
                   </div>
                   <div className="company-directory-card__footer">
                     <div><strong>{company.projectCount}</strong><span>Projects and business units</span></div>
-                    {company.slug === "smartcycle" ? (
+                    {company.slug === "rfc" ? (
+                      <a href="https://rfc-web-zeta.vercel.app/">Explore Company<span aria-hidden="true">↗</span></a>
+                    ) : company.slug === "smartcycle" ? (
                       <a href="https://smartcycle360.com">Explore Company<span aria-hidden="true">↗</span></a>
                     ) : (
                       <Link href={`/companies/${company.slug}`}>Explore Company<span aria-hidden="true">↗</span></Link>
