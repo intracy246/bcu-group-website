@@ -270,8 +270,8 @@ export default function ContactPage() {
           </div>
 
           <div className="contact-companies__grid">
-            <Link
-              href="/companies/rfc"
+            <a
+              href="https://rfc-web-zeta.vercel.app/"
               className="contact-company-card contact-company-card--rfc"
             >
               <span>Ready Food Company</span>
@@ -285,7 +285,7 @@ export default function ContactPage() {
                 Explore RFC
                 <span aria-hidden="true">↗</span>
               </strong>
-            </Link>
+            </a>
 
             <a
               href="https://smartcycle360.com"
