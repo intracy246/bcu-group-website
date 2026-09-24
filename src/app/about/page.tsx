@@ -183,8 +183,8 @@ export default function AboutPage() {
             </div>
 
             <div className="about-structure__companies">
-              <Link
-                href="/companies/rfc"
+              <a
+                href="https://rfc-web-zeta.vercel.app/"
                 className="about-structure__company about-structure__company--rfc"
               >
                 <span>Food & Consumer Systems</span>
@@ -193,7 +193,7 @@ export default function AboutPage() {
                   Food services, dairy, agriculture, cold chain, logistics and
                   consumer businesses.
                 </p>
-              </Link>
+              </a>
 
               <a
                 href="https://smartcycle360.com"
