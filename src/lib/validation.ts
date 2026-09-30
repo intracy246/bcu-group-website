@@ -31,7 +31,9 @@ export const loginSchema = z.object({
 });
 
 export const applicationSchema = z.object({
-  careerId: z.string().cuid(),
+  // IDs are opaque strings because production data may predate the current
+  // Prisma CUID default.
+  careerId: z.string().trim().min(1).max(191),
   applicantName: z.string().trim().min(2).max(100),
   email: emailSchema,
   phone: z.string().trim().max(40).optional().or(z.literal("")),
