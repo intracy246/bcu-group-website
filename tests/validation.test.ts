@@ -13,6 +13,17 @@ test("contact honeypot accepts only an empty value", () => {
   assert.equal(contactMessageSchema.safeParse({ ...base, website: "" }).success, true);
   assert.equal(contactMessageSchema.safeParse({ ...base, website: "spam" }).success, false);
 });
+test("career applications accept opaque production career IDs", () => {
+  const base = {
+    applicantName: "Jane Doe",
+    email: "jane@example.com",
+    coverLetter: "I am applying for this role because my experience closely matches the stated requirements.",
+    cvUrl: "https://example.com/jane-doe.pdf",
+  };
+  assert.equal(applicationSchema.safeParse({ ...base, careerId: "legacy-career-id-001" }).success, true);
+  assert.equal(applicationSchema.safeParse({ ...base, careerId: "550e8400-e29b-41d4-a716-446655440000" }).success, true);
+  assert.equal(applicationSchema.safeParse({ ...base, careerId: "" }).success, false);
+});
 test("career applications require a valid CV URL and cover letter", () => {
-  assert.equal(applicationSchema.safeParse({ careerId: "bad", applicantName: "Jane Doe", email: "jane@example.com", coverLetter: "short", cvUrl: "file" }).success, false);
+  assert.equal(applicationSchema.safeParse({ careerId: "career-1", applicantName: "Jane Doe", email: "jane@example.com", coverLetter: "short", cvUrl: "file" }).success, false);
 });
