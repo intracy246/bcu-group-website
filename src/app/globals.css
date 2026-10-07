@@ -11399,3 +11399,84 @@ html[data-theme="light"] .footer-column h3,
 html[data-theme="light"] .footer-brand-title {
   color:#211c11 !important;
 }
+
+
+/* Dark contrast sections intentionally retained in light mode.
+   These are the closing/CTA surfaces across public pages. Keep the black/gold
+   identity, but override the global light typography so no text becomes faded. */
+html[data-theme="light"] :where(
+  .about-partnership,
+  .companies-expansion,
+  .projects-partnership,
+  .projects-cta,
+  .impact-partnership,
+  .news-media,
+  .careers-general-application
+) {
+  background-color:#080806 !important;
+  color:#fffdf7 !important;
+}
+
+html[data-theme="light"] :where(
+  .about-partnership,
+  .companies-expansion,
+  .projects-partnership,
+  .projects-cta,
+  .impact-partnership,
+  .news-media,
+  .careers-general-application
+) :where(h1,h2,h3,h4,h5,h6,strong,blockquote) {
+  color:#fffdf7 !important;
+  opacity:1 !important;
+}
+
+html[data-theme="light"] :where(
+  .about-partnership,
+  .companies-expansion,
+  .projects-partnership,
+  .projects-cta,
+  .impact-partnership,
+  .news-media,
+  .careers-general-application
+) :where(.section-kicker,h1>span,h2>span,h3>span) {
+  color:#f0c94f !important;
+  opacity:1 !important;
+}
+
+html[data-theme="light"] :where(
+  .about-partnership,
+  .companies-expansion,
+  .projects-partnership,
+  .projects-cta,
+  .impact-partnership,
+  .news-media,
+  .careers-general-application
+) :where(p,li,small,span:not(.button *)) {
+  opacity:1;
+}
+
+html[data-theme="light"] :where(
+  .about-partnership__content,
+  .companies-expansion__content,
+  .projects-partnership__content,
+  .projects-cta__content,
+  .impact-partnership__content,
+  .news-media__content,
+  .careers-general-application__content
+) > p:not(.section-kicker),
+html[data-theme="light"] .news-media__content p {
+  color:#e7e0cf !important;
+  opacity:1 !important;
+}
+
+html[data-theme="light"] :where(
+  .about-partnership,
+  .companies-expansion,
+  .projects-partnership,
+  .projects-cta,
+  .impact-partnership,
+  .news-media,
+  .careers-general-application
+) .button--gold {
+  color:#0a0905 !important;
+}
