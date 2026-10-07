@@ -11480,3 +11480,83 @@ html[data-theme="light"] :where(
 ) .button--gold {
   color:#0a0905 !important;
 }
+
+
+/* Mobile navbar controls: theme stays visible beside the menu trigger. */
+.mobile-nav-actions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+.theme-switcher--mobile {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .theme-switcher--desktop {
+    display: none;
+  }
+
+  .mobile-nav-actions {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .theme-switcher--mobile {
+    display: inline-flex;
+    margin: 0;
+    align-self: center;
+  }
+
+  .theme-switcher--mobile button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mobile-menu-button {
+    flex: 0 0 45px;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-container {
+    gap: 10px;
+  }
+
+  .brand-link {
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: .74rem;
+    letter-spacing: .12em;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-actions {
+    gap: 7px;
+  }
+
+  .theme-switcher--mobile {
+    gap: 2px;
+    padding: 2px;
+  }
+
+  .theme-switcher--mobile button {
+    width: 29px;
+    height: 29px;
+    font-size: .9rem;
+  }
+
+  .mobile-menu-button {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+}
