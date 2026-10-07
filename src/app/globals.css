@@ -11355,3 +11355,47 @@ html[data-theme="light"] .admin-login,
 html[data-theme="light"] .admin-login * {
   color-scheme: dark;
 }
+
+
+/* Light mode readability for the intentionally dark home partnership CTA.
+   Keep this block dark for visual contrast, but make every line fully legible. */
+html[data-theme="light"] .cta-section {
+  background:#080806 !important;
+  color:#fffdf7 !important;
+}
+html[data-theme="light"] .cta-section .section-kicker {
+  color:#f0c94f !important;
+}
+html[data-theme="light"] .cta-section h2 {
+  color:#fffdf7 !important;
+}
+html[data-theme="light"] .cta-section h2 span {
+  color:#f0c94f !important;
+}
+html[data-theme="light"] .cta-section p:not(.section-kicker) {
+  color:#e7e0cf !important;
+  opacity:1 !important;
+}
+html[data-theme="light"] .cta-section .button--gold {
+  color:#0a0905 !important;
+}
+html[data-theme="light"] .cta-glow {
+  opacity:.9;
+}
+
+/* Light footer uses strong contrast rather than faded legacy dark-mode text. */
+html[data-theme="light"] .site-footer {
+  background:#efe6d2;
+}
+html[data-theme="light"] .footer-description,
+html[data-theme="light"] .footer-links a,
+html[data-theme="light"] .footer-links span,
+html[data-theme="light"] .footer-bottom p,
+html[data-theme="light"] .footer-legal-links a {
+  color:#514936 !important;
+  opacity:1 !important;
+}
+html[data-theme="light"] .footer-column h3,
+html[data-theme="light"] .footer-brand-title {
+  color:#211c11 !important;
+}
