@@ -11143,3 +11143,215 @@ html[data-theme="light"] .admin-shell,
 html[data-theme="light"] .admin-login {
   color-scheme: dark;
 }
+
+
+/* ===========================
+   LIGHT THEME — FINAL PUBLIC PAGE ENFORCEMENT
+   The public theme switch must transform the complete page, not only the header.
+=========================== */
+html[data-theme="light"] body,
+html[data-theme="light"] main:not(.admin-shell),
+html[data-theme="light"] .home-page,
+html[data-theme="light"] .about-page,
+html[data-theme="light"] .companies-page,
+html[data-theme="light"] .company-profile-page,
+html[data-theme="light"] .projects-page,
+html[data-theme="light"] .project-detail-page,
+html[data-theme="light"] .impact-page,
+html[data-theme="light"] .news-page,
+html[data-theme="light"] .news-article,
+html[data-theme="light"] .careers-page,
+html[data-theme="light"] .job-detail-page,
+html[data-theme="light"] .team-page,
+html[data-theme="light"] .contact-page {
+  background: #fbf8ee;
+  color: #211c11;
+}
+
+/* Every major public section receives a light surface. Specific branded/image
+   elements below may opt into their own treatment. */
+html[data-theme="light"] main:not(.admin-shell) > section,
+html[data-theme="light"] :where(
+  .hero,
+  .vision-section,
+  .companies-section,
+  .strategy-section,
+  .cta-section,
+  .about-hero,
+  .about-introduction,
+  .about-mission,
+  .about-structure,
+  .about-values,
+  .about-focus,
+  .about-partnership,
+  .companies-page-hero,
+  .companies-directory,
+  .companies-future,
+  .company-profile-hero,
+  .company-overview-section,
+  .company-all-projects-section,
+  .projects-page-hero,
+  .projects-introduction,
+  .projects-directory,
+  .projects-governance,
+  .project-detail-hero,
+  .project-overview-section,
+  .project-capability-section,
+  .related-projects-section,
+  .impact-hero,
+  .impact-purpose,
+  .impact-companies,
+  .impact-measurement,
+  .news-hero,
+  .news-featured,
+  .news-directory,
+  .news-article__hero,
+  .news-article__body,
+  .careers-hero,
+  .careers-introduction,
+  .careers-directory,
+  .careers-opportunities,
+  .careers-general-application,
+  .job-detail-hero,
+  .job-detail-content,
+  .contact-hero,
+  .contact-introduction,
+  .contact-channels,
+  .contact-form-section,
+  .contact-companies
+) {
+  background-color: #fbf8ee;
+  color: #211c11;
+}
+
+/* Alternate section rhythm so the light site retains depth. */
+html[data-theme="light"] :where(
+  .vision-section,
+  .strategy-section,
+  .about-introduction,
+  .about-structure,
+  .about-focus,
+  .companies-directory,
+  .company-overview-section,
+  .company-all-projects-section,
+  .projects-introduction,
+  .projects-governance,
+  .project-overview-section,
+  .related-projects-section,
+  .impact-purpose,
+  .impact-measurement,
+  .news-featured,
+  .news-article__body,
+  .careers-introduction,
+  .careers-opportunities,
+  .job-detail-content,
+  .contact-introduction
+) {
+  background-color: #f5eedc;
+}
+
+/* Hero artwork/glows are allowed, but no black base remains underneath them. */
+html[data-theme="light"] :where(
+  .hero,
+  .about-hero,
+  .companies-page-hero,
+  .company-profile-hero,
+  .projects-page-hero,
+  .project-detail-hero,
+  .impact-hero,
+  .news-hero,
+  .news-article__hero,
+  .careers-hero,
+  .job-detail-hero,
+  .contact-hero
+) {
+  background-color: #fffdf7;
+}
+
+/* Generic public card/panel fallback catches legacy cards that use literal
+   dark fills and were missed by earlier component-specific rules. */
+html[data-theme="light"] main:not(.admin-shell) :where(
+  [class*="-card"],
+  [class*="__panel"],
+  [class*="-panel"],
+  [class*="__statement"],
+  [class*="__metrics"]
+) {
+  border-color: rgba(111,84,16,.16);
+}
+
+/* Explicit dark legacy cards. */
+html[data-theme="light"] :where(
+  .company-card,
+  .company-directory-card,
+  .project-card,
+  .projects-directory__card,
+  .impact-company-card,
+  .featured-news-card,
+  .news-card,
+  .career-card,
+  .job-card,
+  .contact-company-card,
+  .about-mission__card,
+  .project-detail-panel,
+  .job-detail-panel,
+  .contact-hero__panel,
+  .projects-page-hero__metrics
+) {
+  background-color: #fffdf7;
+  color: #211c11;
+}
+
+/* Global public typography contrast. This is deliberately scoped away from admin. */
+html[data-theme="light"] main:not(.admin-shell) :where(h1,h2,h3,h4,h5,h6,strong,blockquote) {
+  color: #211c11;
+}
+html[data-theme="light"] main:not(.admin-shell) :where(p,li,dd,dt,time,small) {
+  color: #625b4b;
+}
+html[data-theme="light"] main:not(.admin-shell) :where(a:not(.button),button:not(.button)) {
+  color: inherit;
+}
+
+/* Gold remains the visual accent, with enough contrast on cream. */
+html[data-theme="light"] main:not(.admin-shell) :where(
+  .section-kicker,
+  .eyebrow,
+  h1 > span,
+  h2 > span,
+  .company-number,
+  .company-sector
+) {
+  color: #8b6810;
+}
+
+/* Light form controls everywhere on the public website. */
+html[data-theme="light"] main:not(.admin-shell) :where(input,textarea,select) {
+  border-color: rgba(111,84,16,.22);
+  background-color: #fffdf7;
+  color: #211c11;
+}
+html[data-theme="light"] main:not(.admin-shell) :where(input,textarea)::placeholder {
+  color: #887e68;
+  opacity: 1;
+}
+
+/* Hover surfaces stay light. */
+html[data-theme="light"] main:not(.admin-shell) :where(
+  .strategy-card,
+  .about-value-card,
+  .about-focus__item,
+  .project-capability-grid article,
+  .contact-channel-card
+):hover {
+  background-color: #eee3c8;
+  color: #211c11;
+}
+
+/* Never allow the theme rules to repaint admin. */
+html[data-theme="light"] .admin-shell,
+html[data-theme="light"] .admin-shell *,
+html[data-theme="light"] .admin-login,
+html[data-theme="light"] .admin-login * {
+  color-scheme: dark;
+}
