@@ -4,3 +4,96 @@
 @media(max-width:700px){.cards,.projectGrid{grid-template-columns:1fr}.directoryHero{padding:70px 0 55px}.directory{padding:50px 0 70px}.directoryHeading{align-items:start;gap:20px}.standardHero{grid-template-columns:1fr;gap:32px;padding-bottom:55px}.standardHero .photoFrame{max-width:420px}.chapter{grid-template-columns:1fr;gap:32px;padding:65px 0}.work{padding:65px 0}.vision{padding:75px 0}.founderHero{grid-template-columns:1fr;padding:50px 0;gap:42px;min-height:0}.founderHero h1{font-size:clamp(57px,15.5vw,105px)}.founderPortrait{height:auto;aspect-ratio:4/5;transform:none;max-width:480px;width:100%}.heroCopy{min-width:0}.heroDetails .lead{font-size:16px}.portfolioBar{font-size:8px}.orbit{width:100%;top:12%;left:10%}.sectionNav{gap:20px}.signature{align-items:start;flex-direction:column}.projectCopy{padding:24px}.timeline article{grid-template-columns:75px 1fr}.progress{height:2px}}
 @media(prefers-reduced-motion:reduce){.team *, .team *::after{animation:none!important;transition:none!important;transform:none!important;scroll-behavior:auto!important}.motion[data-motion=on] [data-reveal]{opacity:1}.progress{display:none}}
 .portraitShell{width:100%;height:100%;position:relative}.portraitShell>.monogram{display:none}.photoFailed>.portrait{display:none}.photoFailed>.monogram{display:flex}
+
+
+/* Public light theme. The theme attribute lives on <html>, so use :global(). */
+:global(html[data-theme="light"]) .team {
+  --gold:#9b7617;
+  background:#fbf8ee;
+  color:#211c11;
+}
+:global(html[data-theme="light"]) .directoryHero {
+  background:radial-gradient(ellipse at 85% 10%,rgba(212,175,55,.18),transparent 60%),#fffdf7;
+  border-bottom-color:rgba(111,84,16,.15);
+}
+:global(html[data-theme="light"]) .directory {
+  background:#fbf8ee;
+}
+:global(html[data-theme="light"]) .directoryHeading {
+  border-bottom-color:rgba(111,84,16,.18);
+}
+:global(html[data-theme="light"]) .directoryHeading span,
+:global(html[data-theme="light"]) .lead,
+:global(html[data-theme="light"]) .prose,
+:global(html[data-theme="light"]) .cardCopy>p {
+  color:#625b4b;
+}
+:global(html[data-theme="light"]) .card {
+  background:linear-gradient(150deg,#fffdf7,#f5eedc 80%);
+  border-color:rgba(111,84,16,.16);
+  box-shadow:0 18px 55px rgba(80,58,10,.055);
+}
+:global(html[data-theme="light"]) .card:hover {
+  border-color:rgba(155,118,23,.42);
+  box-shadow:0 20px 55px rgba(80,58,10,.10);
+}
+:global(html[data-theme="light"]) .textLink:hover {
+  color:#5f470c;
+}
+:global(html[data-theme="light"]) .photoFrame {
+  background:#eee4cd;
+  border-color:rgba(155,118,23,.35);
+}
+:global(html[data-theme="light"]) .monogram {
+  background:radial-gradient(ellipse at 60% 30%,rgba(212,175,55,.25),transparent 70%),#f2ead7;
+  border-color:rgba(155,118,23,.3);
+}
+:global(html[data-theme="light"]) .monogram>span { color:rgba(139,104,16,.42); }
+:global(html[data-theme="light"]) .chapter,
+:global(html[data-theme="light"]) .work,
+:global(html[data-theme="light"]) .signature,
+:global(html[data-theme="light"]) .portfolioBar,
+:global(html[data-theme="light"]) .sectionNav {
+  border-color:rgba(111,84,16,.16);
+}
+:global(html[data-theme="light"]) .timeline article {
+  border-bottom-color:rgba(111,84,16,.14);
+}
+:global(html[data-theme="light"]) .tags li {
+  border-color:rgba(155,118,23,.28);
+  background:rgba(212,175,55,.06);
+  color:#514831;
+}
+:global(html[data-theme="light"]) .connect a {
+  border-bottom-color:rgba(111,84,16,.18);
+}
+:global(html[data-theme="light"]) .project {
+  border-color:rgba(155,118,23,.22);
+  background:linear-gradient(130deg,#fffdf7,#f3ead6);
+}
+:global(html[data-theme="light"]) .vision {
+  background:radial-gradient(ellipse,rgba(212,175,55,.16),transparent 70%),#f5eedc;
+  border-top-color:rgba(111,84,16,.16);
+}
+:global(html[data-theme="light"]) .vision .prose {
+  color:#2a2418;
+}
+:global(html[data-theme="light"]) .founder {
+  background:radial-gradient(ellipse at 80% 9%,rgba(212,175,55,.15),transparent 30%),#fbf8ee;
+}
+:global(html[data-theme="light"]) .founderPortrait {
+  border-color:rgba(155,118,23,.35);
+}
+:global(html[data-theme="light"]) .founderPortrait::after {
+  background:linear-gradient(0deg,rgba(28,23,12,.28),transparent 30%);
+}
+:global(html[data-theme="light"]) .orbit {
+  border-color:rgba(155,118,23,.18);
+}
+:global(html[data-theme="light"]) .orbit::after {
+  border-color:rgba(155,118,23,.22);
+}
+:global(html[data-theme="light"]) .technology {
+  background-color:#fbf8ee;
+  background-image:linear-gradient(rgba(155,118,23,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(155,118,23,.07) 1px,transparent 1px);
+}
