@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { PublicSiteSettings } from "@/lib/site-settings";
 
 const navigation = [
@@ -17,6 +17,20 @@ const navigation = [
 
 export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("bcu-theme");
+    const initial = saved === "light" ? "light" : "dark";
+    document.documentElement.dataset.theme = initial;
+    setTheme(initial);
+  }, []);
+
+  const selectTheme = (next: "dark" | "light") => {
+    document.documentElement.dataset.theme = next;
+    window.localStorage.setItem("bcu-theme", next);
+    setTheme(next);
+  };
 
   return (
     <header className="site-header">
@@ -69,6 +83,11 @@ export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
           >
             {settings.header.contactLabel}
           </Link>
+
+          <div className="theme-switcher" role="group" aria-label="Website colour theme">
+            <button type="button" className={theme === "dark" ? "is-active" : ""} onClick={() => selectTheme("dark")} aria-label="Use dark mode" aria-pressed={theme === "dark"} title="Dark mode"><span aria-hidden="true">☾</span></button>
+            <button type="button" className={theme === "light" ? "is-active" : ""} onClick={() => selectTheme("light")} aria-label="Use light mode" aria-pressed={theme === "light"} title="Light mode"><span aria-hidden="true">☀</span></button>
+          </div>
         </nav>
 
         <button
