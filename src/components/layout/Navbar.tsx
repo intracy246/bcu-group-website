@@ -84,11 +84,17 @@ export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
             {settings.header.contactLabel}
           </Link>
 
-          <div className="theme-switcher" role="group" aria-label="Website colour theme">
+          <div className="theme-switcher theme-switcher--desktop" role="group" aria-label="Website colour theme">
             <button type="button" className={theme === "dark" ? "is-active" : ""} onClick={() => selectTheme("dark")} aria-label="Use dark mode" aria-pressed={theme === "dark"} title="Dark mode"><span aria-hidden="true">☾</span></button>
             <button type="button" className={theme === "light" ? "is-active" : ""} onClick={() => selectTheme("light")} aria-label="Use light mode" aria-pressed={theme === "light"} title="Light mode"><span aria-hidden="true">☀</span></button>
           </div>
         </nav>
+
+        <div className="mobile-nav-actions">
+          <div className="theme-switcher theme-switcher--mobile" role="group" aria-label="Website colour theme">
+            <button type="button" className={theme === "dark" ? "is-active" : ""} onClick={() => selectTheme("dark")} aria-label="Use dark mode" aria-pressed={theme === "dark"} title="Dark mode"><span aria-hidden="true">☾</span></button>
+            <button type="button" className={theme === "light" ? "is-active" : ""} onClick={() => selectTheme("light")} aria-label="Use light mode" aria-pressed={theme === "light"} title="Light mode"><span aria-hidden="true">☀</span></button>
+          </div>
 
         <button
           type="button"
@@ -103,6 +109,7 @@ export default function Navbar({ settings }: { settings: PublicSiteSettings }) {
           <span />
           <span />
         </button>
+        </div>
       </div>
     </header>
   );
