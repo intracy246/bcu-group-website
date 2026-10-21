@@ -23,7 +23,16 @@ Monitor PM2/Nginx logs and `GET /api/health`. The endpoint reports only applicat
 
 ## Vercel
 
-Connect the repository using the Next.js preset and set all production environment variables in Vercel. Use durable production PostgreSQL and `STORAGE_PROVIDER=s3`; Vercel filesystem storage is ephemeral. The build command is `npm run build`; `postinstall` generates Prisma Client. Run `npm run db:deploy` from a controlled deployment job before promoting the release, and seed only when the idempotent baseline data is required. Configure the custom domain and set both `NEXT_PUBLIC_SITE_URL` and the database-backed public website URL to its HTTPS origin.
+Connect the repository using the Next.js preset and set all production environment variables in Vercel. Use durable production PostgreSQL and `STORAGE_PROVIDER=s3`; Vercel filesystem storage is ephemeral. The build command is `npm run build`; `postinstall` generates Prisma Client. Run `npm run db:deploy` from a controlled deployment job before promoting the release, and seed only when the idempotent baseline data is required. Configure the custom domain and set `NEXT_PUBLIC_SITE_URL=https://bcugroup.co.tz`. The environment variable takes precedence over the database-backed public URL so canonical metadata, sitemap, and robots use the same production origin.
+
+### Google Analytics 4 and Search Console
+
+- In Vercel, open **Project → Settings → Environment Variables** and add `NEXT_PUBLIC_GA_ID` with the GA4 web-stream measurement ID (format `G-XXXXXXXXXX`). Apply it to Production, then redeploy. Analytics stays inactive when this variable is blank or invalid.
+- Add `GOOGLE_SITE_VERIFICATION` with the verification token from Search Console's **HTML tag** method (paste only the token value, not the full meta tag). Apply it to Production and redeploy. The app emits Google's verification metadata only when a token is configured.
+- In Google Search Console, add the **Domain property** `bcugroup.co.tz` and complete its DNS TXT verification at the authoritative DNS provider. This verifies both the root domain and subdomains. Alternatively, use the URL-prefix property `https://bcugroup.co.tz/` and the HTML-tag method above.
+- Once verified, open the property, go to **Sitemaps**, and submit `sitemap.xml`. Confirm that the discovered sitemap URL is `https://bcugroup.co.tz/sitemap.xml`; also inspect `https://bcugroup.co.tz/robots.txt`.
+- Use **URL inspection** in Search Console for `https://bcugroup.co.tz/` and important public pages, then select **Request indexing**. Google decides whether and when to index pages; submission is not a guarantee of indexing.
+- Never commit Analytics credentials, verification tokens, or other secrets. The GA measurement ID is designed to be public, but keep all API secrets private.
 
 ## Backup, migration, and rollback
 
