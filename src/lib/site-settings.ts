@@ -15,7 +15,7 @@ const publicSettingsSchema = z.object({
   siteName: z.string().default("BCU Group"),
   siteDescription: z.string().default("Building communities. Creating opportunity."),
   publicWebsiteUrl: z.string().url().default("http://localhost:3000"),
-  mainEmail: z.string().email().or(z.literal("")).default("info@bcu.co.tz"),
+  mainEmail: z.string().email().or(z.literal("")).default("info@bcugroup.co.tz"),
   mainPhone: z.string().default(""),
   officeAddress: z.string().default("Dar es Salaam, Tanzania"),
   defaultSeoTitle: z.string().default("BCU Group"),
