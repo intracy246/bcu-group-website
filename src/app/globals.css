@@ -11897,3 +11897,199 @@ html[data-theme="light"] :where(
   .company-directory-card__footer { align-items: flex-start; flex-direction: column; }
   .company-logo-container { min-height: 200px; }
 }
+
+
+/* ==========================================================
+   BCU GLASS SYSTEM — restrained glassmorphism for public + admin UI
+   Preserve the black/gold identity, readability, and fast rendering.
+========================================================== */
+:root {
+  --bcu-glass-dark: rgba(14, 14, 13, .72);
+  --bcu-glass-border: rgba(226, 195, 92, .19);
+  --bcu-glass-highlight: rgba(255, 255, 255, .055);
+  --bcu-glass-shadow: 0 18px 54px rgba(0, 0, 0, .18);
+}
+
+.site-header {
+  background: rgba(7, 7, 6, .82);
+  border-bottom-color: rgba(212, 175, 55, .14);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .12);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header {
+    -webkit-backdrop-filter: saturate(135%) blur(18px);
+    backdrop-filter: saturate(135%) blur(18px);
+  }
+}
+
+.theme-switcher,
+.nav-contact-button {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 8px 26px rgba(0,0,0,.12);
+}
+
+main:not(.admin-shell) :where(
+  .company-directory-card,
+  .company-card,
+  .company-profile-panel,
+  .project-card,
+  .projects-directory__card,
+  .impact-company-card,
+  .featured-news-card,
+  .news-card,
+  .career-card,
+  .job-card,
+  .contact-channel-card,
+  .about-mission__card,
+  .strategy-card,
+  .about-value-card,
+  .about-focus__item,
+  .project-capability-grid article
+) {
+  border: 1px solid var(--bcu-glass-border);
+  box-shadow: var(--bcu-glass-shadow), inset 0 1px 0 var(--bcu-glass-highlight);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  main:not(.admin-shell) :where(
+    .company-directory-card,
+    .company-card,
+    .company-profile-panel,
+    .project-card,
+    .projects-directory__card,
+    .impact-company-card,
+    .featured-news-card,
+    .news-card,
+    .career-card,
+    .job-card,
+    .contact-channel-card,
+    .about-mission__card,
+    .strategy-card,
+    .about-value-card,
+    .about-focus__item,
+    .project-capability-grid article
+  ) {
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    backdrop-filter: blur(12px) saturate(120%);
+  }
+}
+
+main:not(.admin-shell) :where(
+  .company-directory-card,
+  .company-card,
+  .project-card,
+  .projects-directory__card,
+  .featured-news-card,
+  .news-card,
+  .career-card,
+  .job-card,
+  .contact-channel-card
+):hover {
+  border-color: rgba(226, 195, 92, .42);
+  box-shadow: 0 24px 64px rgba(0,0,0,.23), inset 0 1px 0 rgba(255,255,255,.075);
+}
+
+.site-header .brand-logo,
+.company-directory-card__logo,
+.admin-company-image-preview {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+}
+
+.admin-shell .admin-topbar,
+.admin-shell .admin-sidebar,
+.admin-shell .admin-form-card,
+.admin-shell .admin-company-edit-form__header,
+.admin-shell .admin-company-edit-form__section,
+.admin-shell .admin-company-image-field,
+.admin-shell .admin-dashboard-card,
+.admin-shell .admin-stat-card {
+  border-color: rgba(212,175,55,.15);
+  box-shadow: 0 16px 44px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .admin-shell .admin-topbar,
+  .admin-shell .admin-company-edit-form__header {
+    -webkit-backdrop-filter: blur(16px) saturate(115%);
+    backdrop-filter: blur(16px) saturate(115%);
+  }
+}
+
+.admin-company-edit-form__section,
+.admin-company-image-field {
+  background: linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.012) 55%), rgba(12,12,11,.78);
+}
+
+.admin-company-image-preview {
+  background: radial-gradient(ellipse at center, rgba(212,175,55,.09), transparent 70%), rgba(5,5,5,.64);
+}
+
+.admin-company-upload-button {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 8px 22px rgba(212,175,55,.09);
+}
+
+html[data-theme="light"] .site-header {
+  background: rgba(255, 253, 247, .84);
+  border-bottom-color: rgba(111,84,16,.18);
+  box-shadow: 0 8px 30px rgba(79,61,21,.08);
+}
+
+html[data-theme="light"] main:not(.admin-shell) :where(
+  .company-directory-card,
+  .company-card,
+  .company-profile-panel,
+  .project-card,
+  .projects-directory__card,
+  .impact-company-card,
+  .featured-news-card,
+  .news-card,
+  .career-card,
+  .job-card,
+  .contact-channel-card,
+  .about-mission__card,
+  .strategy-card,
+  .about-value-card,
+  .about-focus__item,
+  .project-capability-grid article
+) {
+  border-color: rgba(111,84,16,.18);
+  box-shadow: 0 16px 42px rgba(79,61,21,.08), inset 0 1px 0 rgba(255,255,255,.78);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-theme="light"] .site-header {
+    -webkit-backdrop-filter: saturate(125%) blur(18px);
+    backdrop-filter: saturate(125%) blur(18px);
+  }
+  html[data-theme="light"] main:not(.admin-shell) :where(
+    .company-directory-card,
+    .company-card,
+    .project-card,
+    .projects-directory__card,
+    .featured-news-card,
+    .news-card,
+    .career-card,
+    .job-card,
+    .contact-channel-card
+  ) {
+    -webkit-backdrop-filter: blur(10px) saturate(115%);
+    backdrop-filter: blur(10px) saturate(115%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main:not(.admin-shell) :where(
+    .company-directory-card,
+    .company-card,
+    .project-card,
+    .projects-directory__card,
+    .featured-news-card,
+    .news-card,
+    .career-card,
+    .job-card,
+    .contact-channel-card
+  ) {
+    transition: none;
+  }
+}
