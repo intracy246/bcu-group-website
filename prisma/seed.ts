@@ -56,7 +56,7 @@ async function main() {
 
   for (const [key, value] of Object.entries({
     siteName: "BCU Group", siteDescription: "Building institutions that move Africa forward.",
-    mainEmail: "info@bcugroup.com", mainPhone: "", officeAddress: "Dar es Salaam, Tanzania",
+    mainEmail: "info@bcugroup.co.tz", mainPhone: "", officeAddress: "Dar es Salaam, Tanzania",
     publicWebsiteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
     socialLinks: {}, header: {}, footer: {}, defaultSeoTitle: "BCU Group",
     defaultSeoDescription: "Building institutions that move Africa forward.",
