@@ -3,7 +3,7 @@
 import styles from "./WhatsAppButton.module.css";
 
 const WHATSAPP_URL =
-  "https://wa.me/255672828587?text=Habari%20BCU%20Group%2C%20naomba%20kupata%20maelezo%20zaidi.";
+  "https://wa.me/255672828587?text=Hello%20BCU%20Group%2C%20I%20would%20like%20to%20know%20more.";
 
 export default function WhatsAppButton() {
   return (
