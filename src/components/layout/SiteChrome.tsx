@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import type { PublicSiteSettings } from "@/lib/site-settings";
 
 type SiteChromeProps = {
@@ -27,6 +28,7 @@ export default function SiteChrome({
       <Navbar settings={settings} />
       {children}
       <Footer settings={settings} />
+      <WhatsAppButton />
     </>
   );
 }
