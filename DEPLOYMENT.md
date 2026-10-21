@@ -23,7 +23,7 @@ Monitor PM2/Nginx logs and `GET /api/health`. The endpoint reports only applicat
 
 ## Vercel
 
-Connect the repository using the Next.js preset and set all production environment variables in Vercel. Use durable production PostgreSQL and `STORAGE_PROVIDER=s3`; Vercel filesystem storage is ephemeral. The build command is `npm run build`; `postinstall` generates Prisma Client. Run `npm run db:deploy` from a controlled deployment job before promoting the release, and seed only when the idempotent baseline data is required. Configure the custom domain and set `NEXT_PUBLIC_SITE_URL=https://bcugroup.co.tz`. The environment variable takes precedence over the database-backed public URL so canonical metadata, sitemap, and robots use the same production origin.
+Connect the repository using the Next.js preset and set all production environment variables in Vercel. Use durable production PostgreSQL and `STORAGE_PROVIDER=s3`; Vercel filesystem storage is ephemeral. The build command is `npm run build`; `postinstall` generates Prisma Client. Run `npm run db:deploy` from a controlled deployment job before promoting the release, and seed only when the idempotent baseline data is required. Configure the custom domain and set `NEXT_PUBLIC_SITE_URL=https://www.bcugroup.co.tz`. The environment variable takes precedence over the database-backed public URL so canonical metadata, sitemap, and robots use the same production origin.
 
 ### Google Analytics 4 and Search Console
 
