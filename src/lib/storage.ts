@@ -7,7 +7,7 @@ import { generateSafeStorageKey, resolveStoragePath, type StorageVisibility } fr
 export type { StorageVisibility } from "@/lib/storage-keys";
 export type UploadInput = { bytes: Uint8Array; originalName: string; mimeType: string; folder: string; visibility: StorageVisibility };
 export type StoredFile = { key: string; url: string; size: number };
-const localRoot=path.resolve(process.cwd(),process.env.LOCAL_STORAGE_PATH||".storage");
+const localRoot = path.resolve(/* turbopackIgnore: true */ process.cwd(), process.env.LOCAL_STORAGE_PATH || ".storage");
 export { generateSafeStorageKey };
 export function resolveLocalStoragePath(key:string):string{return resolveStoragePath(localRoot,key);}
 const provider=()=>process.env.STORAGE_PROVIDER?.toLowerCase()==="s3"?"s3":"local";
