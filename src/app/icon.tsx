@@ -31,6 +31,7 @@ export default async function Icon() {
           boxSizing: "border-box",
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse requires an HTML img element for generated icons. */}
         <img
           src={logoData}
           alt="BCU Group"
