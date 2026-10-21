@@ -11560,3 +11560,340 @@ html[data-theme="light"] :where(
     flex-basis: 42px;
   }
 }
+
+
+/* ============================
+   COMPANY MANAGEMENT — POLISHED EDITORIAL LAYOUT
+   Covers the public company cards and the admin company editor.
+============================ */
+.company-directory-card {
+  min-width: 0;
+  border-radius: 26px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .16);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.company-directory-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 85px rgba(0, 0, 0, .26);
+}
+.company-directory-card__logo {
+  display: grid;
+  min-height: clamp(220px, 27vw, 380px);
+  margin: 18px 0 26px;
+  padding: clamp(24px, 4vw, 54px);
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.045), transparent 68%);
+}
+.company-directory-card__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(150px, 21vw, 280px);
+  object-fit: contain;
+  object-position: center;
+  transition: transform 300ms ease;
+}
+.company-directory-card:hover .company-directory-card__image { transform: scale(1.035); }
+.company-directory-card__content { min-width: 0; }
+.company-directory-card__content > h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+.company-directory-card__content > p:not(.company-directory-card__legal) {
+  max-width: 62ch;
+  line-height: 1.8;
+}
+.company-directory-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding-top: 22px;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.company-directory-card__footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(212,175,55,.45);
+  border-radius: 999px;
+  color: var(--bcu-gold-light);
+  font-size: .78rem;
+  font-weight: 800;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.company-directory-card__footer a:hover {
+  transform: translateY(-2px);
+  background: var(--bcu-gold);
+  color: #090909;
+}
+.company-directory-card__footer > div { display: grid; gap: 4px; }
+.company-directory-card__footer > div strong { font-size: 1.45rem; color: var(--bcu-gold-light); }
+.company-directory-card__footer > div span { color: #9b9b9b; font-size: .72rem; }
+
+.company-logo-container {
+  width: 100%;
+  min-height: 270px;
+  padding: 20px;
+}
+.company-logo-container img,
+.company-logo,
+.company-logo-image {
+  max-width: 100%;
+  max-height: 310px;
+  object-fit: contain;
+}
+
+/* Admin company editor: clear sections, visible image preview, easy upload. */
+.admin-company-edit-form {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+.admin-company-edit-form__header {
+  align-items: center;
+  gap: 24px;
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid rgba(212,175,55,.22);
+  border-radius: 18px;
+  background: radial-gradient(ellipse at 0 0, rgba(212,175,55,.10), transparent 55%), #0b0b0b;
+}
+.admin-company-edit-form__header > div:first-child p {
+  margin-bottom: 8px;
+  color: #d8b847;
+  font-size: .7rem;
+  font-weight: 850;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.admin-company-edit-form__header h2 {
+  color: #f7f3e7;
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+.admin-company-edit-form__header > div:first-child > span {
+  display: block;
+  margin-top: 10px;
+  color: #a6a6a6;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+.admin-company-edit-form__header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.admin-company-edit-form__section {
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,255,255,.025), transparent 40%), #0b0b0b;
+  box-shadow: 0 16px 44px rgba(0,0,0,.12);
+}
+.admin-company-edit-form__section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.admin-company-edit-form__section-heading > span {
+  display: grid;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(212,175,55,.34);
+  border-radius: 12px;
+  background: rgba(212,175,55,.08);
+  color: #e3c45d;
+  font-size: .76rem;
+  font-weight: 900;
+}
+.admin-company-edit-form__section-heading h3 {
+  margin: 0;
+  color: #f3f0e6;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+.admin-company-edit-form__section-heading p {
+  margin-top: 6px;
+  color: #999;
+  font-size: .78rem;
+  line-height: 1.6;
+}
+.admin-company-edit-form .admin-form-grid { gap: 20px; }
+.admin-company-edit-form .admin-form-field { min-width: 0; gap: 9px; color: #b6b2a7; font-size: .76rem; }
+.admin-company-edit-form .admin-form-field > span { color: #d0c9b5; font-weight: 750; }
+.admin-company-edit-form .admin-form-field input,
+.admin-company-edit-form .admin-form-field textarea,
+.admin-company-edit-form .admin-form-field select {
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 10px;
+  background: #111;
+  color: #f8f5eb;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.admin-company-edit-form .admin-form-field textarea { min-height: 110px; line-height: 1.7; }
+.admin-company-edit-form .admin-form-field input:focus,
+.admin-company-edit-form .admin-form-field textarea:focus,
+.admin-company-edit-form .admin-form-field select:focus {
+  border-color: rgba(225,190,72,.82);
+  background: #14130f;
+  box-shadow: 0 0 0 3px rgba(212,175,55,.12);
+}
+.admin-company-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.admin-company-image-field {
+  display: grid;
+  align-content: start;
+  gap: 15px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px;
+  background: rgba(0,0,0,.2);
+}
+.admin-company-image-field__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.admin-company-image-field__heading h4 { color: #f0e9d5; font-size: .92rem; font-weight: 800; }
+.admin-company-image-field__heading p { max-width: 42ch; margin-top: 6px; color: #999; font-size: .73rem; line-height: 1.6; }
+.admin-company-image-field__badge {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 999px;
+  background: rgba(212,175,55,.07);
+  color: #ddbf56;
+  font-size: .61rem;
+  font-weight: 800;
+}
+.admin-company-image-preview {
+  display: grid;
+  min-height: 210px;
+  aspect-ratio: 16 / 9;
+  place-items: center;
+  overflow: hidden;
+  border: 1px dashed rgba(212,175,55,.23);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at center, rgba(212,175,55,.07), transparent 70%), #080808;
+}
+.admin-company-image-preview--logo { aspect-ratio: 16 / 9; }
+.admin-company-image-preview--cover { aspect-ratio: 16 / 9; }
+.admin-company-image-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  object-fit: contain;
+}
+.admin-company-image-preview--cover img { object-fit: cover; }
+.admin-company-image-preview__empty { display: grid; gap: 8px; place-items: center; padding: 18px; text-align: center; }
+.admin-company-image-preview__empty span { color: rgba(212,175,55,.6); font-size: 1.2rem; font-weight: 900; letter-spacing: .2em; }
+.admin-company-image-preview__empty p { color: #797979; font-size: .72rem; }
+.admin-company-file-input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); clip-path: inset(50%); white-space: nowrap; }
+.admin-company-upload-button {
+  display: inline-flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(212,175,55,.42);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #e2c65c, #bd9829);
+  color: #111;
+  font-size: .79rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+.admin-company-upload-button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(212,175,55,.15); }
+.admin-company-upload-button:disabled { opacity: .58; cursor: wait; }
+.admin-company-upload-button--secondary { border-color: rgba(255,255,255,.16); background: #171717; color: #e7dfc9; }
+.admin-company-upload-success {
+  padding: 13px 16px;
+  border: 1px solid rgba(55,190,125,.32);
+  border-radius: 10px;
+  background: rgba(20,120,70,.12);
+  color: #87e0b0;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+.admin-company-edit-form .admin-checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 10px;
+  background: rgba(255,255,255,.02);
+}
+.admin-company-edit-form .admin-checkbox-field input { width: 17px; height: 17px; margin-top: 3px; accent-color: #d4af37; }
+.admin-company-edit-form .admin-checkbox-field span { display: grid; gap: 5px; color: #e9e3d4; font-size: .8rem; }
+.admin-company-edit-form .admin-checkbox-field small { color: #999; font-size: .72rem; line-height: 1.5; }
+.admin-company-edit-form__bottom-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 0 8px;
+}
+.admin-company-edit-form button:focus-visible,
+.admin-company-edit-form a:focus-visible {
+  outline: 2px solid #e1bf4d;
+  outline-offset: 3px;
+}
+.admin-company-edit-form button:disabled { opacity: .6; cursor: wait; }
+
+@media (max-width: 900px) {
+  .admin-company-edit-form__header { align-items: flex-start; flex-direction: column; }
+  .admin-company-edit-form__header-actions { width: 100%; justify-content: flex-start; }
+  .admin-company-image-grid { grid-template-columns: minmax(0, 1fr); }
+  .company-directory-card__logo { min-height: 240px; }
+  .company-directory-card__image { height: 210px; }
+}
+@media (max-width: 600px) {
+  .admin-company-edit-form { gap: 14px; }
+  .admin-company-edit-form__header { padding: 20px 16px; }
+  .admin-company-edit-form__header-actions { flex-direction: column; align-items: stretch; }
+  .admin-company-edit-form__header-actions > *,
+  .admin-company-edit-form__bottom-actions > * { width: 100%; text-align: center; }
+  .admin-company-edit-form__section { padding: 17px 14px; }
+  .admin-company-edit-form__section-heading { gap: 10px; }
+  .admin-company-edit-form__section-heading > span { flex-basis: 34px; width: 34px; height: 34px; }
+  .admin-company-image-field { padding: 13px; }
+  .admin-company-image-field__heading { flex-direction: column; }
+  .admin-company-image-preview { min-height: 175px; }
+  .company-directory-card { padding: 18px; border-radius: 18px; }
+  .company-directory-card__logo { min-height: 190px; margin-block: 14px 20px; padding: 20px; }
+  .company-directory-card__image { height: 165px; }
+  .company-directory-card__footer { align-items: flex-start; flex-direction: column; }
+  .company-logo-container { min-height: 200px; }
+}
