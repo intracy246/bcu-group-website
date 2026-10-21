@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(settings.publicWebsiteUrl),
     title: { default: settings.defaultSeoTitle, template: `%s | ${settings.siteName}` },
+    icons: { icon: [{ url: "/brands/bcu-logo.png?v=2", type: "image/png" }] },
     description: settings.defaultSeoDescription,
     ...(googleVerification ? { verification: { google: googleVerification } } : {}),
     openGraph: {
