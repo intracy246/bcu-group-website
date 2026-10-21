@@ -1,0 +1,82 @@
+.button {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 1000;
+  display: inline-flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28), 0 0 0 5px rgba(37, 211, 102, 0.12);
+  text-decoration: none;
+  transition: width 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:hover {
+  width: 174px;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32), 0 0 0 7px rgba(37, 211, 102, 0.15);
+}
+
+.button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+.icon {
+  display: block;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+}
+
+.label {
+  display: none;
+  padding-right: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.button:hover .label,
+.button:focus-visible .label {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .button {
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    width: 58px;
+    height: 58px;
+  }
+
+  .button:hover {
+    width: 58px;
+    transform: none;
+  }
+
+  .icon {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
+  }
+
+  .label {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
