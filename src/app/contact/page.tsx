@@ -19,7 +19,7 @@ export default function ContactPage() {
 
             <div>
               <span>General email</span>
-              <a href="mailto:info@bcu.co.tz">info@bcu.co.tz</a>
+              <a href="mailto:info@bcugroup.co.tz">info@bcugroup.co.tz</a>
             </div>
 
             <div>
