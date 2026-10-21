@@ -56,7 +56,12 @@ const defaults: PublicSiteSettings = publicSettingsSchema.parse({
 export const getPublicSiteSettings = cache(async (): Promise<PublicSiteSettings> => {
   const records = await prisma.siteSetting.findMany();
   const values = Object.fromEntries(records.map((record) => [record.key, record.value]));
-  return publicSettingsSchema.parse({ ...defaults, ...values });
+  return publicSettingsSchema.parse({
+    ...defaults,
+    ...values,
+    // The deployment's canonical origin must win over stale database settings.
+    publicWebsiteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? values.publicWebsiteUrl ?? defaults.publicWebsiteUrl,
+  });
 });
 
 export { publicSettingsSchema };
